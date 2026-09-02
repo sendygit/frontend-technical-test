@@ -7,13 +7,17 @@ export interface Operator {
   logo: string;
 }
 
-export interface PulsaDataPackage {
+export interface PulsaProduct {
   id: string;
   operatorId: string;
   type: PulsaDataType;
   name: string;
+  nominal: number;
   price: number;
   description?: string;
   quota?: string;
   validity?: string;
 }
+
+// Alias for backwards compatibility
+export type PulsaDataPackage = PulsaProduct;
