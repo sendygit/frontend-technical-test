@@ -21,7 +21,7 @@ export function ContactItem({ contact, onSelect }: ContactItemProps) {
       {/* Left: Avatar & Contact Details */}
       <div className="flex items-center gap-3.5 min-w-0 flex-1 mr-2">
         {/* Avatar (50x50) */}
-        <div className="relative size-[50px] shrink-0 rounded-full overflow-hidden bg-[#F9F5FE]">
+        <div className="relative size-12.5 shrink-0 rounded-full overflow-hidden bg-[#F9F5FE]">
           {!imgError && contact.avatar ? (
             <Image
               src={contact.avatar}

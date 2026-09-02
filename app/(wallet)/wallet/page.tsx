@@ -15,11 +15,11 @@ export default function WalletPage() {
   const [isMoreMenuOpen, setIsMoreMenuOpen] = useState<boolean>(false);
 
   return (
-    <main className="w-full max-w-[430px] mx-auto h-dvh flex flex-col justify-between relative bg-[#662AB2] overflow-hidden font-product-sans">
+    <main className="w-full max-w-107 mx-auto h-dvh flex flex-col justify-between relative bg-[#662AB2] overflow-hidden font-product-sans">
       {/* Background Decorative Rings */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden z-0">
-        <div className="size-80 -left-[113px] top-[68px] absolute rounded-full border-[38px] border-[#5C26A1]" />
-        <div className="size-56 left-[300px] top-[69px] absolute rounded-full border-[32px] border-[#5C26A1]" />
+        <div className="size-80 -left-28.25 top-17 absolute rounded-full border-38 border-[#5C26A1]" />
+        <div className="size-56 left-75 top-17 absolute rounded-full border-32 border-[#5C26A1]" />
       </div>
 
       {/* Top Purple Header Content */}
@@ -37,7 +37,7 @@ export default function WalletPage() {
       {/* White Bottom Sheet Area with Exact Ellipse Background from Figma */}
       <div className="flex-1 w-full relative overflow-hidden flex flex-col min-h-0 -mt-25 pt-30 px-6 pb-2 z-10">
         {/* Exact Ellipse Shape from Figma (863px x 860px at left -217px top 0) */}
-        <div className="w-[863px] h-[860px] left-[-217px] top-0 absolute bg-white rounded-full pointer-events-none" />
+        <div className="w-216 h-215 -left-54 top-0 absolute bg-white rounded-full pointer-events-none" />
 
         {/* Send Again */}
         <div className="relative z-10 shrink-0 pb-4">

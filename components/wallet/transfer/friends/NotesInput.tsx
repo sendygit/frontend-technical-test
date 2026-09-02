@@ -19,7 +19,7 @@ export function NotesInput({ value, onChange }: NotesInputProps) {
         <span className="text-neutral-400 text-sm font-light">(Optional)</span>
       </div>
 
-      <div className="w-full h-28 p-4 bg-neutral-100/80 rounded-xl outline outline-1 outline-neutral-200 focus-within:outline-[#662AB2] focus-within:bg-white transition-all">
+      <div className="w-full h-28 p-4 bg-neutral-100/80 rounded-xl outline-1 outline-neutral-200 focus-within:outline-[#662AB2] focus-within:bg-white transition-all">
         <textarea
           id="transfer-notes"
           rows={3}

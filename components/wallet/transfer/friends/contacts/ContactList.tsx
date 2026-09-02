@@ -30,7 +30,7 @@ export function ContactList({
           {[1, 2, 3, 4, 5, 6].map((i) => (
             <div key={i} className="flex items-center justify-between py-1 animate-pulse">
               <div className="flex items-center gap-3.5 flex-1">
-                <div className="size-[50px] rounded-full bg-slate-100 shrink-0" />
+                <div className="size-12.5 rounded-full bg-slate-100 shrink-0" />
                 <div className="space-y-2 flex-1">
                   <div className="h-4.5 w-36 rounded bg-slate-200" />
                   <div className="h-4 w-28 rounded bg-slate-100" />

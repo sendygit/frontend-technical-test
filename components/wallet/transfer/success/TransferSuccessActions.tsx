@@ -37,7 +37,7 @@ export function TransferSuccessActions({ receipt }: TransferSuccessActionsProps)
   };
 
   return (
-    <div className="w-full max-w-[390px] mx-auto space-y-3.5 font-product-sans pt-2">
+    <div className="w-full max-w-98 mx-auto space-y-3.5 font-product-sans pt-2">
       {/* Toast Notification when copied */}
       {copied && (
         <div className="flex items-center justify-center gap-1.5 p-2.5 rounded-xl bg-white/20 backdrop-blur-md text-white text-xs font-semibold text-center animate-in fade-in">

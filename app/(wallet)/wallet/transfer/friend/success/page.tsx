@@ -56,11 +56,11 @@ function TransferSuccessContent() {
   ]);
 
   return (
-    <main className="w-full max-w-[430px] mx-auto min-h-dvh flex flex-col justify-between py-5 px-5 relative bg-[#662AB2] font-product-sans overflow-x-hidden">
+    <main className="w-full max-w-107 mx-auto min-h-dvh flex flex-col justify-between py-5 px-5 relative bg-[#662AB2] font-product-sans overflow-x-hidden">
       {/* Background Decorative Rings */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden z-0">
-        <div className="size-80 -left-[113px] top-[68px] absolute rounded-full border-[38px] border-[#5C26A1]" />
-        <div className="size-56 left-[300px] top-[69px] absolute rounded-full border-[32px] border-[#5C26A1]" />
+        <div className="size-80 -left-28.25 top-17 absolute rounded-full border-38 border-[#5C26A1]" />
+        <div className="size-56 left-75 top-17 absolute rounded-full border-32 border-[#5C26A1]" />
       </div>
 
       {/* Top Status Bar Spacing */}

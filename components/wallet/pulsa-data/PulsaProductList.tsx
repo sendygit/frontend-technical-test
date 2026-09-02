@@ -51,7 +51,7 @@ export function PulsaProductList({
             key={product.id}
             type="button"
             onClick={() => onSelectProduct(product)}
-            className={`rounded-2xl p-4 border transition-all cursor-pointer flex flex-col justify-between min-h-[96px] text-left focus:outline-none ${
+            className={`rounded-2xl p-4 border transition-all cursor-pointer flex flex-col justify-between min-h-24 text-left focus:outline-none ${
               isSelected
                 ? "bg-[#F9F5FE] border-[#662AB2] ring-2 ring-[#662AB2]/20 shadow-sm"
                 : "bg-white border-[#E6E6E6] hover:border-[#662AB2]/50 hover:bg-slate-50/60 shadow-xs"

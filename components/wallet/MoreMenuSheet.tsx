@@ -177,7 +177,7 @@ export function MoreMenuSheet({ isOpen, onClose }: MoreMenuSheetProps) {
 
       {/* Bottom Sheet Modal Frame with smooth iOS spring curve */}
       <div
-        className={`relative z-10 w-full max-h-[85vh] h-[680px] rounded-t-[40px] bg-white px-5 pt-5 pb-8 shadow-2xl overflow-y-auto scrollbar-none transform transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] will-change-transform ${
+        className={`relative z-10 w-full max-h-[85vh] h-170 rounded-t-[40px] bg-white px-5 pt-5 pb-8 shadow-2xl overflow-y-auto scrollbar-none transform transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] will-change-transform ${
           isVisible ? "translate-y-0" : "translate-y-full"
         } flex flex-col`}
       >

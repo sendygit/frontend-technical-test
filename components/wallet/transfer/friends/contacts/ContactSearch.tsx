@@ -15,7 +15,7 @@ export function ContactSearch({ value, onChange, onAddContact }: ContactSearchPr
   return (
     <div className="flex items-center gap-3 w-full">
       {/* Search Bar (Pill Shape) */}
-      <div className="flex-1 flex items-center gap-3 h-[52px] rounded-full border border-neutral-400/70 px-5 bg-white focus-within:border-[#662AB2] focus-within:ring-2 focus-within:ring-purple-100 transition-all">
+      <div className="flex-1 flex items-center gap-3 h-13 rounded-full border border-neutral-400/70 px-5 bg-white focus-within:border-[#662AB2] focus-within:ring-2 focus-within:ring-purple-100 transition-all">
         <Search className="size-5 text-neutral-400 shrink-0" />
         <input
           type="text"

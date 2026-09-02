@@ -22,7 +22,7 @@ export function BankListItem({ bank, onSelect }: BankListItemProps) {
     >
       {/* Left: 50x50 Circular Logo & Name */}
       <div className="flex items-center gap-3.5 min-w-0">
-        <div className="size-[50px] rounded-full bg-[#FAFAFA] border border-slate-100 flex items-center justify-center shrink-0 overflow-hidden shadow-xs group-hover:border-[#662AB2]/30 transition-colors p-2">
+        <div className="size-12.5 rounded-full bg-[#FAFAFA] border border-slate-100 flex items-center justify-center shrink-0 overflow-hidden shadow-xs group-hover:border-[#662AB2]/30 transition-colors p-2">
           {bank.logo && !logoError ? (
             <Image
               src={bank.logo}

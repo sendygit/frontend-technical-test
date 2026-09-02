@@ -20,7 +20,7 @@ export function TransferSuccessCard({ receipt }: TransferSuccessCardProps) {
     : receipt.recipient.phoneNumber;
 
   return (
-    <div className="relative w-full max-w-[390px] mx-auto pt-10">
+    <div className="relative w-full max-w-98 mx-auto pt-10">
       {/* Outer White Badge with Success Checkmark (matching Figma: p-1 bg-white rounded-full) */}
       <div className="p-1 left-1/2 -translate-x-1/2 top-0 absolute bg-white rounded-full inline-flex justify-center items-center z-20">
         <div className="size-16 relative rounded-full overflow-hidden flex items-center justify-center">

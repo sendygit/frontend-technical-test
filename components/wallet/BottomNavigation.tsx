@@ -7,7 +7,7 @@ export function BottomNavigation() {
       className="w-full border-t border-slate-100 bg-white px-4 pt-2 pb-[max(0.75rem,env(safe-area-inset-bottom))] shadow-[0px_-4px_20px_0px_rgba(0,0,0,0.05)] select-none shrink-0"
       aria-label="Navigasi Bawah"
     >
-      <div className="flex items-center justify-between max-w-[430px] mx-auto">
+      <div className="flex items-center justify-between max-w-107 mx-auto">
         {/* 1. Home (Active) */}
         <button
           type="button"

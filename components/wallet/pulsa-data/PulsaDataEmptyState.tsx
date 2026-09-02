@@ -22,7 +22,7 @@ export function PulsaDataEmptyState() {
         <h3 className="text-xl font-bold text-[#121212] tracking-tight">
           Enter Your Phone Number First
         </h3>
-        <p className="text-base text-[#999999] font-normal max-w-[219px] leading-snug">
+        <p className="text-base text-[#999999] font-normal max-w-55 leading-snug">
           Let&apos;s start by entering your phone number
         </p>
       </div>

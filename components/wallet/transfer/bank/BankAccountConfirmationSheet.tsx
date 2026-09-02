@@ -48,7 +48,7 @@ export function BankAccountConfirmationSheet({
       aria-labelledby="confirmation-sheet-title"
     >
       <div
-        className="w-full max-w-[430px] bg-white rounded-t-[32px] pt-5 px-5 pb-7 shadow-2xl flex flex-col justify-between space-y-6 animate-in slide-in-from-bottom duration-200 font-product-sans"
+        className="w-full max-w-107 bg-white rounded-t-4xl pt-5 px-5 pb-7 shadow-2xl flex flex-col justify-between space-y-6 animate-in slide-in-from-bottom duration-200 font-product-sans"
         onClick={(e) => e.stopPropagation()}
       >
         {/* 1. Drag Indicator (100px x 6px #E6E6E6) */}
@@ -65,7 +65,7 @@ export function BankAccountConfirmationSheet({
               Destination Bank
             </h3>
             <div className="flex items-center gap-3">
-              <div className="size-[50px] rounded-full bg-[#FAFAFA] border border-slate-100 flex items-center justify-center shrink-0 overflow-hidden p-2 shadow-xs">
+              <div className="size-12.5 rounded-full bg-[#FAFAFA] border border-slate-100 flex items-center justify-center shrink-0 overflow-hidden p-2 shadow-xs">
                 {bank.logo && !logoError ? (
                   <Image
                     src={bank.logo}
