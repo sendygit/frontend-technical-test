@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState, useCallback } from "react";
+import { useEffect, useState, useCallback } from "react";
 import Link from "next/link";
 import Image from "next/image";
 
@@ -181,18 +181,18 @@ export function MoreMenuSheet({ isOpen, onClose }: MoreMenuSheetProps) {
         } flex flex-col`}
       >
         {/* Drag Handle Bar (100px x 6px #E6E6E6) */}
-        <div className="w-[100px] h-[6px] bg-[#E6E6E6] rounded-full mx-auto shrink-0 mb-5" />
+        <div className="w-25 h-1.5 bg-[#E6E6E6] rounded-full mx-auto shrink-0 mb-5" />
 
         <div className="space-y-6 flex-1 pb-4">
           {/* SECTION 1: MAIN MENU */}
           <div className="space-y-4">
             <div className="flex items-center justify-between">
-              <h2 className="text-[20px] font-bold text-[#121212] tracking-tight">
+              <h2 className="text-xl font-bold text-[#121212] tracking-tight">
                 Main Menu
               </h2>
               <button
                 type="button"
-                className="text-[14px] font-medium text-[#059D8B] hover:opacity-80 transition-opacity focus:outline-none"
+                className="text-sm font-medium text-[#059D8B] hover:opacity-80 transition-opacity focus:outline-none"
               >
                 Edit Menu
               </button>
@@ -203,16 +203,16 @@ export function MoreMenuSheet({ isOpen, onClose }: MoreMenuSheetProps) {
               {MAIN_MENU_ITEMS.map((item) => {
                 const content = (
                   <div className="flex flex-col items-center gap-2 group cursor-pointer">
-                    <div className="flex h-14 w-14 items-center justify-center rounded-full bg-[#F9F5FE] transition-transform group-hover:scale-105 shadow-sm">
+                    <div className="flex size-14 items-center justify-center rounded-full bg-[#F9F5FE] transition-transform group-hover:scale-105 shadow-sm">
                       <Image
                         src={item.iconSrc}
                         alt={item.label}
                         width={36}
                         height={36}
-                        className="h-9 w-9 object-contain"
+                        className="size-9 object-contain"
                       />
                     </div>
-                    <span className="text-[16px] font-semibold text-[#121212] group-hover:text-[#662AB2] transition-colors text-center">
+                    <span className="text-base font-semibold text-[#121212] group-hover:text-[#662AB2] transition-colors text-center">
                       {item.label}
                     </span>
                   </div>
@@ -247,7 +247,7 @@ export function MoreMenuSheet({ isOpen, onClose }: MoreMenuSheetProps) {
 
           {/* SECTION 2: PAYMENT LIST */}
           <div className="space-y-4 pt-2">
-            <h2 className="text-[20px] font-bold text-[#121212] tracking-tight">
+            <h2 className="text-xl font-bold text-[#121212] tracking-tight">
               Payment List
             </h2>
 
@@ -260,16 +260,16 @@ export function MoreMenuSheet({ isOpen, onClose }: MoreMenuSheetProps) {
                   className="flex flex-col items-center gap-2 group cursor-pointer focus:outline-none focus:ring-2 focus:ring-[#662AB2] rounded-2xl p-1"
                   aria-label={item.label}
                 >
-                  <div className="flex h-14 w-14 items-center justify-center rounded-full bg-[#F9F5FE] transition-transform group-hover:scale-105 shadow-sm">
+                  <div className="flex size-14 items-center justify-center rounded-full bg-[#F9F5FE] transition-transform group-hover:scale-105 shadow-sm">
                     <Image
                       src={item.iconSrc}
                       alt={item.label}
                       width={32}
                       height={32}
-                      className="h-8 w-8 object-contain"
+                      className="size-8 object-contain"
                     />
                   </div>
-                  <span className="text-[14px] font-medium text-[#121212] leading-tight text-center group-hover:text-[#662AB2] transition-colors">
+                  <span className="text-sm font-medium text-[#121212] leading-tight text-center group-hover:text-[#662AB2] transition-colors">
                     {item.label}
                   </span>
                 </button>

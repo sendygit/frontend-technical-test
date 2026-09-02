@@ -1,4 +1,3 @@
-import React from "react";
 import { ArrowRight } from "lucide-react";
 import { WalletTransaction } from "@/lib/types/wallet";
 import { TransactionItem } from "./TransactionItem";
@@ -17,7 +16,7 @@ export function TransactionList({ transactions }: TransactionListProps) {
         </h2>
         <button
           type="button"
-          className="flex items-center gap-1 text-xs font-semibold text-[#059D8B] hover:opacity-80 transition-opacity focus:outline-none"
+          className="flex items-center gap-1 text-xs font-semibold text-[#059D8B] hover:opacity-80 transition-opacity focus:outline-none cursor-pointer"
         >
           <span>See all</span>
           <ArrowRight className="h-3.5 w-3.5" />

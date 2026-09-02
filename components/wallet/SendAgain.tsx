@@ -1,4 +1,3 @@
-import React from "react";
 import { Plus, ArrowRight } from "lucide-react";
 import { WalletFriend } from "@/lib/types/wallet";
 import { FriendItem } from "./FriendItem";
@@ -17,7 +16,7 @@ export function SendAgain({ friends }: SendAgainProps) {
         </h2>
         <button
           type="button"
-          className="flex items-center gap-1 text-xs font-semibold text-[#059D8B] hover:opacity-80 transition-opacity focus:outline-none"
+          className="flex items-center gap-1 text-xs font-semibold text-[#059D8B] hover:opacity-80 transition-opacity focus:outline-none cursor-pointer"
         >
           <span>See all</span>
           <ArrowRight className="h-3.5 w-3.5" />
@@ -25,12 +24,12 @@ export function SendAgain({ friends }: SendAgainProps) {
       </div>
 
       {/* Horizontal List */}
-      <div className="flex items-center gap-4 overflow-x-auto pb-2 pt-1 -mx-6 px-6 scrollbar-none  [-ms-overflow-style:none]">
+      <div className="flex items-center gap-4 overflow-x-auto pb-2 pt-1 -mx-6 px-6 scrollbar-none [-ms-overflow-style:none]">
         {/* Add New Button */}
         <div className="flex flex-col items-center gap-1.5 shrink-0 cursor-pointer">
           <button
             type="button"
-            className="flex h-14 w-14 items-center justify-center rounded-full border-2 border-dashed border-[#662AB2] bg-white text-[#662AB2] focus:outline-none shadow-sm"
+            className="flex h-14 w-14 items-center justify-center rounded-full border-2 border-dashed border-[#662AB2] bg-white text-[#662AB2] focus:outline-none shadow-sm cursor-pointer"
             aria-label="Tambah penerima baru"
           >
             <Plus className="h-6 w-6" />

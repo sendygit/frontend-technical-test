@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { ArrowLeft, RefreshCw, AlertTriangle, Inbox } from "lucide-react";
 import { Button } from "@/components/ui/button";

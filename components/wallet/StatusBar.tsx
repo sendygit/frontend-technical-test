@@ -1,11 +1,9 @@
-import React from "react";
 import { Signal, Wifi } from "lucide-react";
 
 export function StatusBar() {
   return (
     <div className="flex items-center justify-between px-6 pt-3.5 pb-2 text-white text-xs font-semibold select-none z-10 relative">
       <span className="text-sm font-semibold tracking-tight">9:41</span>
-
 
       {/* Status Icons */}
       <div className="flex items-center gap-2">

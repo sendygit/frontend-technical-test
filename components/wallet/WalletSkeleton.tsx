@@ -1,4 +1,3 @@
-import React from "react";
 import { StatusBar } from "./StatusBar";
 import { BottomNavigation } from "./BottomNavigation";
 
@@ -35,11 +34,11 @@ export function WalletSkeleton() {
         </div>
 
         {/* Main Menu Card Skeleton (matching mt-1 from page.tsx) */}
-        <div className="mt-1 relative z-20 mx-6 rounded-2xl bg-white p-4 shadow-xl shadow-purple-950/10 border border-slate-100">
+        <div className="mt-1 relative z-20 mx-6 rounded-2xl bg-white p-4 shadow-xl border border-slate-100">
           <div className="grid grid-cols-4 gap-2">
             {[1, 2, 3, 4].map((i) => (
               <div key={i} className="flex flex-col items-center gap-2">
-                <div className="h-11 w-11 rounded-full bg-slate-100 animate-pulse" />
+                <div className="size-11 rounded-full bg-slate-100 animate-pulse" />
                 <div className="h-3 w-12 rounded bg-slate-100 animate-pulse" />
               </div>
             ))}
@@ -57,7 +56,7 @@ export function WalletSkeleton() {
             <div className="flex items-center gap-4 overflow-hidden -mx-6 px-6">
               {[1, 2, 3, 4].map((i) => (
                 <div key={i} className="flex flex-col items-center gap-1.5 shrink-0">
-                  <div className="h-14 w-14 rounded-full bg-slate-100 animate-pulse" />
+                  <div className="size-14 rounded-full bg-slate-100 animate-pulse" />
                   <div className="h-3 w-10 rounded bg-slate-100 animate-pulse" />
                 </div>
               ))}
@@ -74,7 +73,7 @@ export function WalletSkeleton() {
               {[1, 2, 3].map((i) => (
                 <div key={i} className="flex items-center justify-between py-2">
                   <div className="flex items-center gap-3">
-                    <div className="h-11 w-11 rounded-full bg-slate-100 animate-pulse" />
+                    <div className="size-11 rounded-full bg-slate-100 animate-pulse" />
                     <div className="space-y-1.5">
                       <div className="h-4 w-28 rounded bg-slate-200 animate-pulse" />
                       <div className="h-3 w-20 rounded bg-slate-100 animate-pulse" />

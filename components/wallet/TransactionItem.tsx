@@ -1,4 +1,3 @@
-import React from "react";
 import Image from "next/image";
 import { WalletTransaction } from "@/lib/types/wallet";
 import { formatCurrency } from "@/lib/utils/format";

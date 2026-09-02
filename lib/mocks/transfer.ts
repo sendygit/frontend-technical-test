@@ -1,0 +1,63 @@
+import { TransferTransaction } from "../types/transfer";
+
+export const MOCK_LATEST_TRANSFERS: TransferTransaction[] = [
+  {
+    id: "tx-tf-1",
+    name: "Alexandria",
+    date: "Yesterday · 19:12",
+    amount: 600000,
+    type: "friend",
+    avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&auto=format&fit=crop&q=80",
+  },
+  {
+    id: "tx-tf-2",
+    name: "Immanuel",
+    date: "May 31, 2023 · 09:13",
+    amount: 200000,
+    type: "friend",
+    avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&auto=format&fit=crop&q=80",
+  },
+  {
+    id: "tx-tf-3",
+    name: "Maybank - Alexia Putri Raharjo",
+    date: "May 13, 2023 · 21:54",
+    amount: 745000,
+    type: "bank",
+    bankName: "Maybank",
+    accountNumber: "9823412093",
+  },
+  {
+    id: "tx-tf-4",
+    name: "Kayshania",
+    date: "April 27, 2023 · 20:29",
+    amount: 57000,
+    type: "friend",
+    avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80",
+  },
+  {
+    id: "tx-tf-5",
+    name: "BRI - Akhmad Maariz",
+    date: "April 12, 2023 · 04:18",
+    amount: 450000,
+    type: "bank",
+    bankName: "BRI",
+    accountNumber: "034101000789501",
+  },
+  {
+    id: "tx-tf-6",
+    name: "BRI - Akhmad Maariz",
+    date: "April 12, 2023 · 04:18",
+    amount: 450000,
+    type: "bank",
+    bankName: "BRI",
+    accountNumber: "034101000789501",
+  },
+  {
+    id: "tx-tf-7",
+    name: "Ibrahimi",
+    date: "April 12, 2023 · 04:18",
+    amount: 128000,
+    type: "friend",
+    avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&auto=format&fit=crop&q=80",
+  },
+];

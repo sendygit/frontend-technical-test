@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Eye, EyeOff } from "lucide-react";
 import { formatCurrency } from "@/lib/utils/format";
 
@@ -20,7 +20,7 @@ export function BalanceSection({ balance }: BalanceSectionProps) {
         <button
           type="button"
           onClick={() => setIsVisible(!isVisible)}
-          className="text-purple-200 hover:text-white transition-colors focus:outline-none rounded p-1"
+          className="text-purple-200 hover:text-white transition-colors focus:outline-none rounded p-1 cursor-pointer"
           aria-label={isVisible ? "Sembunyikan saldo" : "Tampilkan saldo"}
         >
           {isVisible ? <EyeOff className="h-5 w-5" /> : <Eye className="h-5 w-5" />}
