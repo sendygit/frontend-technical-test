@@ -1,8 +1,9 @@
 "use client";
 
-import { useState } from "react";
+import { useState, Suspense } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { useRouter, useSearchParams } from "next/navigation";
 import { ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { StatusBar } from "@/components/wallet/StatusBar";
@@ -16,8 +17,20 @@ import {
 import { formatCurrency } from "@/lib/utils/format";
 import { MOCK_WALLET_DATA } from "@/lib/mocks/wallet";
 
-export default function TransferFriendPage() {
-  const [recipientPhone, setRecipientPhone] = useState("");
+function TransferFriendContent() {
+  const router = useRouter();
+  const searchParams = useSearchParams();
+
+  const phoneParam = searchParams.get("phone") || "";
+  const [prevPhoneParam, setPrevPhoneParam] = useState(phoneParam);
+  const [recipientPhone, setRecipientPhone] = useState(phoneParam);
+
+  // Sync state when searchParams changes (idiomatic React 19 pattern)
+  if (phoneParam !== prevPhoneParam) {
+    setPrevPhoneParam(phoneParam);
+    setRecipientPhone(phoneParam);
+  }
+
   const [amount, setAmount] = useState<number>(0);
   const [notes, setNotes] = useState("");
   const [error, setError] = useState<string | null>(null);
@@ -110,13 +123,14 @@ export default function TransferFriendPage() {
 
             {/* Form Fields */}
             <div className="space-y-4">
-              {/* 1. Recipient Input */}
+              {/* 1. Recipient Input with Phonebook Navigation */}
               <RecipientInput
                 value={recipientPhone}
                 onChange={(val) => {
                   setRecipientPhone(val);
                   if (error) setError(null);
                 }}
+                onOpenContacts={() => router.push("/wallet/transfer/friend/contacts")}
                 error={!isRecipientValid && recipientPhone ? "Nomor telepon minimal 4 digit." : null}
               />
 
@@ -156,5 +170,13 @@ export default function TransferFriendPage() {
         </div>
       </div>
     </div>
+  );
+}
+
+export default function TransferFriendPage() {
+  return (
+    <Suspense fallback={<div className="p-8 text-center text-slate-500 font-medium">Memuat form transfer...</div>}>
+      <TransferFriendContent />
+    </Suspense>
   );
 }
