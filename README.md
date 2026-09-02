@@ -1,8 +1,8 @@
-# Frontend Technical Assessment — Monorepo
+# Frontend Technical Assessment
 
 Repositori ini memuat implementasi komprehensif untuk Frontend Technical Test yang dibangun menggunakan **Next.js (App Router)**, **React**, **TypeScript (Strict Mode)**, dan **Tailwind CSS**.
 
-Seluruh modul soal disatukan dalam satu repository terstruktur dengan penekanan pada kode yang bersih, mudah dipelihara, modular, berperforma tinggi, dan bebas dari over-engineering.
+Seluruh modul soal disatukan dalam satu repository terstruktur dengan fokus pada clean, maintainable, dan modular code, optimal performance, serta menghindari over-engineering.
 
 ---
 
