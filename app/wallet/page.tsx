@@ -134,15 +134,15 @@ export default function WalletPage() {
       </div>
 
       {/* Main Mobile App Frame Container (430px x 932px centered) */}
-      <div className="mx-auto w-full max-w-[430px] rounded-[36px] bg-[#662AB2] shadow-2xl shadow-purple-950/20 border border-purple-900/30 overflow-hidden flex flex-col min-h-233 font-product-sans relative">
+      <div className="mx-auto w-full max-w-[430px] rounded-[36px] bg-[#662AB2] shadow-2xl shadow-purple-950/20 border border-purple-900/30 overflow-hidden flex flex-col min-h-[932px] font-product-sans relative">
         {/* Background Decorative Rings (matching Figma image) */}
         <div className="pointer-events-none absolute inset-0 overflow-hidden z-0">
-          <div className="size-80 -left-[113px] top-17 absolute rounded-full border-38px border-[#5C26A1]" />
-          <div className="size-56 left-75 top-[69px] absolute rounded-full border-32px border-[#5C26A1]" />
+          <div className="size-80 -left-[113px] top-[68px] absolute rounded-full border-[38px] border-[#5C26A1]" />
+          <div className="size-56 left-[300px] top-[69px] absolute rounded-full border-[32px] border-[#5C26A1]" />
         </div>
 
         {/* Large White Oval Background that overlaps behind Main Menu */}
-        <div className="w-[863px] h-215 -left-[217px] top-65 absolute bg-white rounded-full z-0 shadow-lg pointer-events-none" />
+        <div className="w-[863px] h-[860px] -left-[217px] top-[260px] absolute bg-white rounded-full z-0 shadow-lg pointer-events-none" />
 
         {isLoading ? (
           <div className="relative z-10 flex-1 flex flex-col justify-between">

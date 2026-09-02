@@ -4,15 +4,15 @@ import { BottomNavigation } from "./BottomNavigation";
 
 export function WalletSkeleton() {
   return (
-    <div className="relative flex min-h-233 flex-col justify-between overflow-hidden bg-[#662AB2]">
+    <div className="relative flex min-h-[932px] flex-col justify-between overflow-hidden bg-[#662AB2]">
       {/* Background Decorative Rings */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden z-0">
-        <div className="size-80 -left-28.25top-17 absolute rounded-full border-38px border-[#5C26A1]" />
-        <div className="size-56 left-75 top-17.25 absolute rounded-full border-32px border-[#5C26A1]" />
+        <div className="size-80 -left-[113px] top-[68px] absolute rounded-full border-[38px] border-[#5C26A1]" />
+        <div className="size-56 left-[300px] top-[69px] absolute rounded-full border-[32px] border-[#5C26A1]" />
       </div>
 
       {/* Large White Oval Background */}
-      <div className="w-215.75 h-215 -left-54.25 top-16.25 absolute bg-white rounded-full z-0 shadow-lg pointer-events-none" />
+      <div className="w-[863px] h-[860px] -left-[217px] top-[260px] absolute bg-white rounded-full z-0 shadow-lg pointer-events-none" />
 
       <div className="relative z-10 pb-6">
         {/* Top Purple Header Background */}
