@@ -117,8 +117,16 @@ frontend-technical-test/
 ## 📝 Modul Soal & Implementasi
 
 ### Soal 1 — Recursive Factorial Calculator (`/factorial`)
-* **Deskripsi:** Perhitungan nilai faktorial dari angka input positif menggunakan algoritma rekursif murni.
-* **Status:** Fondasi routing dan types siap. *(Placeholder)*
+* **Deskripsi:** Perhitungan nilai faktorial dari angka input bilangan bulat non-negatif menggunakan fungsi rekursif murni TypeScript (`n! = n * (n - 1)!`).
+* **Status:** ✅ Selesai Diimplementasikan.
+* **Edge Cases Ditangani:**
+  - `0! = 1` (Base case)
+  - `1! = 1` (Base case)
+  - Bilangan negatif (cth: `-1`) → Ditolak dengan pesan validasi yang jelas
+  - Input kosong → Ditolak dengan pesan validasi yang jelas
+  - Bilangan desimal (cth: `1.5`) → Ditolak dengan pesan validasi yang jelas
+  - Input non-angka (cth: `abc`) → Ditolak dengan pesan validasi yang jelas
+  - Limit representasi JS float (`n > 170`) → Ditolak dengan pesan peringatan batas overflow JavaScript
 
 ---
 
