@@ -1,48 +1,38 @@
-export type TransactionType = "transfer" | "receive" | "topup";
-export type TransactionStatus = "success" | "pending" | "failed";
-
 export interface WalletUser {
   id: string;
   name: string;
-  email: string;
-  accountNumber: string;
+  points: number;
+  accountNumber?: string;
   avatarUrl?: string;
 }
 
-export interface WalletBalance {
-  amount: number;
-  currency: string;
-  lastUpdated: string;
-}
-
-export interface Transaction {
-  id: string;
-  type: TransactionType;
-  title: string;
-  description?: string;
-  amount: number;
-  fee: number;
-  recipient?: {
-    name: string;
-    accountNumber: string;
-    avatarUrl?: string;
-  };
-  sender?: {
-    name: string;
-    accountNumber: string;
-  };
-  status: TransactionStatus;
-  createdAt: string;
-}
-
-export interface TransferRecipient {
+export interface WalletFriend {
   id: string;
   name: string;
-  accountNumber: string;
-  bankOrWallet: string;
-  avatarUrl?: string;
+  avatar?: string;
+  accountNumber?: string;
 }
 
+export type TransactionDirection = "in" | "out";
+
+export interface WalletTransaction {
+  id: string;
+  title: string;
+  type: string;
+  date: string;
+  amount: number;
+  isPositive: boolean;
+  category?: string;
+}
+
+export interface WalletData {
+  user: WalletUser;
+  balance: number;
+  friends: WalletFriend[];
+  transactions: WalletTransaction[];
+}
+
+// Types for transfer in future task if needed
 export interface TransferFormData {
   recipientId: string;
   amount: number;
@@ -51,12 +41,6 @@ export interface TransferFormData {
 
 export interface TransferResult {
   success: boolean;
-  transaction?: Transaction;
   message: string;
-}
-
-export interface ApiResponse<T> {
-  success: boolean;
-  data: T;
-  message?: string;
+  transaction?: WalletTransaction;
 }

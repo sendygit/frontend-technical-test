@@ -144,9 +144,8 @@ frontend-technical-test/
 
 ### Soal 3 — CashEase E-Wallet (`/wallet` & `/wallet/transfer`)
 * **Deskripsi:** Fitur aplikasi dompet digital interaktif:
-  - **Halaman Utama (`/wallet`):** Menampilkan profil pengguna, ringkasan saldo terkini, aksi cepat, dan riwayat transaksi.
-  - **Halaman Transfer (`/wallet/transfer`):** Formulir pengiriman saldo ke daftar kontak/nomor rekening tujuan dengan validasi kecukupan saldo dan feedback status transaksi.
-* **Status:** Fondasi routing, types, mocks, dan UI primitives siap. *(Placeholder)*
+  - **Halaman Utama (`/wallet`):** ✅ Selesai Diimplementasikan (Figma Node `1:243`). Memuat status bar, header logo & points badge, saldo dengan toggle visibility, main action menu (Transfer, Top Up, Withdraw, More), section *Send Again* dengan scrolling horizontal dan tombol *Add New*, daftar *Latest Transaction* dengan formatting nominal positif (hijau) & negatif (merah), simulated REST API delay 1200ms, loading skeleton UI, error state dengan tombol retry, serta penanganan empty state.
+  - **Halaman Transfer (`/wallet/transfer`):** ✅ Selesai Diimplementasikan (Figma Node `1:244`). Memuat pemilihan kontak penerima tersimpan dengan status verifikasi, input nominal Rupiah dinamis, validasi saldo (`amount <= balance`), quick preset nominal (50k, 100k, 250k, 500k, 1jt), input catatan opsional, tombol submit dengan simulated REST API delay 1000ms, serta modal receipt konfirmasi transfer sukses lengkap dengan nomor transaksi dan biaya admin Rp 0.
 
 ---
 
