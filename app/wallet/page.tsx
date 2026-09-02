@@ -16,12 +16,14 @@ import {
   BottomNavigation,
   WalletSkeleton,
   WalletErrorState,
+  MoreMenuSheet,
 } from "@/components/wallet";
 
 export default function WalletPage() {
   const [data, setData] = useState<WalletData | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const [isMoreMenuOpen, setIsMoreMenuOpen] = useState<boolean>(false);
 
   // Simulation mode toggles for assessment verification
   const [simulateMode, setSimulateMode] = useState<"normal" | "error" | "empty">("normal");
@@ -172,7 +174,7 @@ export default function WalletPage() {
 
               {/* Main Menu Card (Overlapping the purple background and white oval) */}
               <div className="mt-1 relative z-20">
-                <MainMenu />
+                <MainMenu onMoreClick={() => setIsMoreMenuOpen(true)} />
               </div>
 
               {/* White Content Section on Oval Background */}
@@ -189,6 +191,12 @@ export default function WalletPage() {
             <BottomNavigation />
           </div>
         ) : null}
+
+        {/* Bottom Sheet Modal Overlay for More Menu (Node 1:447) */}
+        <MoreMenuSheet
+          isOpen={isMoreMenuOpen}
+          onClose={() => setIsMoreMenuOpen(false)}
+        />
       </div>
     </div>
   );

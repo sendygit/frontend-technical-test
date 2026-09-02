@@ -2,7 +2,11 @@ import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 
-export function MainMenu() {
+interface MainMenuProps {
+  onMoreClick?: () => void;
+}
+
+export function MainMenu({ onMoreClick }: MainMenuProps) {
   const menuItems = [
     {
       id: "transfer",
@@ -30,7 +34,8 @@ export function MainMenu() {
       label: "More",
       href: "#",
       iconSrc: "/wallet/icons/icon-more.svg",
-      isClickable: false,
+      isClickable: true,
+      onClick: onMoreClick,
     },
   ];
 
@@ -55,7 +60,21 @@ export function MainMenu() {
             </div>
           );
 
-          if (item.isClickable) {
+          if (item.id === "more") {
+            return (
+              <button
+                key={item.id}
+                type="button"
+                onClick={onMoreClick}
+                className="focus:outline-none focus:ring-2 focus:ring-[#662AB2] rounded-xl p-1 cursor-pointer"
+                aria-label="Buka menu lainnya"
+              >
+                {content}
+              </button>
+            );
+          }
+
+          if (item.isClickable && item.href) {
             return (
               <Link key={item.id} href={item.href} className="focus:outline-none focus:ring-2 focus:ring-[#662AB2] rounded-xl p-1">
                 {content}
