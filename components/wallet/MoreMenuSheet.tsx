@@ -45,6 +45,7 @@ const PAYMENT_LIST_ITEMS: MenuItem[] = [
     id: "pulsa-data",
     label: "Pulsa & Data",
     iconSrc: "/wallet/icons/icon-phone.svg",
+    href: "/wallet/pulsa-data",
   },
   {
     id: "electricity",
@@ -174,7 +175,7 @@ export function MoreMenuSheet({ isOpen, onClose }: MoreMenuSheetProps) {
         aria-hidden="true"
       />
 
-      {/* Bottom Sheet Modal Frame with smooth iOS spring curve (duration-500 cubic-bezier(0.16,1,0.3,1)) */}
+      {/* Bottom Sheet Modal Frame with smooth iOS spring curve */}
       <div
         className={`relative z-10 w-full max-h-[85vh] h-[680px] rounded-t-[40px] bg-white px-5 pt-5 pb-8 shadow-2xl overflow-y-auto scrollbar-none transform transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] will-change-transform ${
           isVisible ? "translate-y-0" : "translate-y-full"
@@ -192,7 +193,7 @@ export function MoreMenuSheet({ isOpen, onClose }: MoreMenuSheetProps) {
               </h2>
               <button
                 type="button"
-                className="text-sm font-medium text-[#059D8B] hover:opacity-80 transition-opacity focus:outline-none"
+                className="text-sm font-medium text-[#059D8B] hover:opacity-80 transition-opacity focus:outline-none cursor-pointer"
               >
                 Edit Menu
               </button>
@@ -253,27 +254,48 @@ export function MoreMenuSheet({ isOpen, onClose }: MoreMenuSheetProps) {
 
             {/* Payment List 4-Columns Grid (12 items) */}
             <div className="grid grid-cols-4 gap-x-2 gap-y-5 text-center">
-              {PAYMENT_LIST_ITEMS.map((item) => (
-                <button
-                  key={item.id}
-                  type="button"
-                  className="flex flex-col items-center gap-2 group cursor-pointer focus:outline-none focus:ring-2 focus:ring-[#662AB2] rounded-2xl p-1"
-                  aria-label={item.label}
-                >
-                  <div className="flex size-14 items-center justify-center rounded-full bg-[#F9F5FE] transition-transform group-hover:scale-105 shadow-sm">
-                    <Image
-                      src={item.iconSrc}
-                      alt={item.label}
-                      width={32}
-                      height={32}
-                      className="size-8 object-contain"
-                    />
+              {PAYMENT_LIST_ITEMS.map((item) => {
+                const content = (
+                  <div className="flex flex-col items-center gap-2 group cursor-pointer">
+                    <div className="flex size-14 items-center justify-center rounded-full bg-[#F9F5FE] transition-transform group-hover:scale-105 shadow-sm">
+                      <Image
+                        src={item.iconSrc}
+                        alt={item.label}
+                        width={32}
+                        height={32}
+                        className="size-8 object-contain"
+                      />
+                    </div>
+                    <span className="text-sm font-medium text-[#121212] leading-tight text-center group-hover:text-[#662AB2] transition-colors">
+                      {item.label}
+                    </span>
                   </div>
-                  <span className="text-sm font-medium text-[#121212] leading-tight text-center group-hover:text-[#662AB2] transition-colors">
-                    {item.label}
-                  </span>
-                </button>
-              ))}
+                );
+
+                if (item.href) {
+                  return (
+                    <Link
+                      key={item.id}
+                      href={item.href}
+                      onClick={handleClose}
+                      className="focus:outline-none focus:ring-2 focus:ring-[#662AB2] rounded-2xl p-1"
+                    >
+                      {content}
+                    </Link>
+                  );
+                }
+
+                return (
+                  <button
+                    key={item.id}
+                    type="button"
+                    className="flex flex-col items-center gap-2 group cursor-pointer focus:outline-none focus:ring-2 focus:ring-[#662AB2] rounded-2xl p-1"
+                    aria-label={item.label}
+                  >
+                    {content}
+                  </button>
+                );
+              })}
             </div>
           </div>
         </div>
