@@ -1,4 +1,5 @@
 import { TransferTransaction, TransferReceipt, TransferRecipientData } from "../types/transfer";
+import { Bank } from "../types/bank";
 import { MOCK_LATEST_TRANSFERS } from "../mocks/transfer";
 
 interface GetLatestTransfersOptions {
@@ -56,6 +57,52 @@ export async function submitTransferToFriend(
     type: "friend",
     amount: params.amount,
     recipient: params.recipient,
+    notes: params.notes,
+    date: dateStr,
+    time: timeStr,
+    referenceNumber: refNumber,
+    fee: 0,
+    total: params.amount,
+    status: "success",
+  };
+}
+
+export interface SubmitBankTransferParams {
+  bank: Bank;
+  accountNumber: string;
+  amount: number;
+  notes?: string;
+}
+
+export async function submitBankTransfer(
+  params: SubmitBankTransferParams,
+  delayMs: number = 500
+): Promise<TransferReceipt> {
+  await new Promise((resolve) => setTimeout(resolve, delayMs));
+
+  const now = new Date();
+  const months = [
+    "January", "February", "March", "April", "May", "June",
+    "July", "August", "September", "October", "November", "December"
+  ];
+  const dateStr = `${months[now.getMonth()]} ${now.getDate()}, ${now.getFullYear()}`;
+  const hours = now.getHours().toString().padStart(2, "0");
+  const minutes = now.getMinutes().toString().padStart(2, "0");
+  const timeStr = `${hours}:${minutes}`;
+
+  const randomBlock = () => Math.random().toString(36).substring(2, 6).toUpperCase();
+  const refNumber = `QOIU-${randomBlock()}-${randomBlock()}-${randomBlock()}`;
+
+  return {
+    id: `tx_${Date.now()}`,
+    type: "bank",
+    amount: params.amount,
+    recipient: {
+      id: params.bank.id,
+      name: params.bank.accountName || "KAROLINA MCMILLAN",
+      phoneNumber: params.accountNumber,
+      avatar: params.bank.logo,
+    },
     notes: params.notes,
     date: dateStr,
     time: timeStr,

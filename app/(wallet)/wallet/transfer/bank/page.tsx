@@ -15,6 +15,7 @@ import { formatCurrency } from "@/lib/utils/format";
 import { MOCK_WALLET_DATA } from "@/lib/mocks/wallet";
 import { findBankByIdOrCode } from "@/lib/mocks/bank";
 import { Bank } from "@/lib/types/bank";
+import { submitBankTransfer } from "@/lib/api/transfer";
 
 function TransferBankContent() {
   const router = useRouter();
@@ -22,6 +23,8 @@ function TransferBankContent() {
 
   const bankParam = searchParams.get("bank") || searchParams.get("bankId") || "";
   const accountParam = searchParams.get("accountNumber") || searchParams.get("account") || "";
+  const initialAmountParam = searchParams.get("amount") ? parseInt(searchParams.get("amount") || "0", 10) : 0;
+  const initialNotesParam = searchParams.get("notes") || "";
 
   const baseBank = findBankByIdOrCode(bankParam) || null;
   const initialBank: Bank | null = baseBank
@@ -39,8 +42,9 @@ function TransferBankContent() {
     setSelectedBank(initialBank);
   }
 
-  const [amount, setAmount] = useState<number>(0);
-  const [notes, setNotes] = useState("");
+  const [amount, setAmount] = useState<number>(initialAmountParam);
+  const [notes, setNotes] = useState<string>(initialNotesParam);
+  const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
   const [isSuccessToast, setIsSuccessToast] = useState(false);
 
@@ -48,15 +52,15 @@ function TransferBankContent() {
 
   const isBankValid = Boolean(selectedBank);
   const isAmountValid = amount >= 10000 && amount <= balance;
-  const isFormValid = isBankValid && isAmountValid;
+  const isFormValid = isBankValid && isAmountValid && !isSubmitting;
 
   const handleOpenBankPicker = () => {
-    // Navigasi ke bank destination selector / picker (untuk memilih bank)
+    // Navigasi ke bank destination selector / picker
     router.push("/wallet/transfer/bank/select");
   };
 
-  const handleProceed = () => {
-    if (!isBankValid) {
+  const handleProceed = async () => {
+    if (!isBankValid || !selectedBank) {
       setError("Silakan pilih bank tujuan terlebih dahulu.");
       return;
     }
@@ -69,9 +73,27 @@ function TransferBankContent() {
       return;
     }
 
-    setError(null);
-    setIsSuccessToast(true);
-    setTimeout(() => setIsSuccessToast(false), 3000);
+    try {
+      setIsSubmitting(true);
+      setError(null);
+
+      await submitBankTransfer({
+        bank: selectedBank,
+        accountNumber: selectedBank.accountNumber || "12345678980901",
+        amount,
+        notes,
+      });
+
+      setIsSuccessToast(true);
+      setTimeout(() => {
+        setIsSuccessToast(false);
+        setIsSubmitting(false);
+      }, 3000);
+    } catch (err) {
+      const msg = err instanceof Error ? err.message : "Gagal memproses transfer bank.";
+      setError(msg);
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -121,7 +143,7 @@ function TransferBankContent() {
 
           {/* Form Fields */}
           <div className="space-y-4">
-            {/* 1. Bank Destination Selector */}
+            {/* 1. Destination Bank / Recipient (Node 1:1479 initial, Node 1:2269 filled) */}
             <BankDestinationSelector
               selectedBank={selectedBank}
               onClick={handleOpenBankPicker}
@@ -152,7 +174,7 @@ function TransferBankContent() {
 
           {isSuccessToast && (
             <div className="p-3 bg-green-50 border border-green-200 rounded-xl text-center text-xs font-semibold text-green-700 animate-in fade-in">
-              Data transfer bank valid!
+              Transfer ke bank berhasil diproses!
             </div>
           )}
 

@@ -48,7 +48,7 @@ export function BankAccountNumber({ accountNumber }: BankAccountNumberProps) {
       >
         <Image
           src={isVisible ? "/wallet/icons/icon-visibility.svg" : "/wallet/icons/icon-visibility-off.svg"}
-          alt=""
+          alt="Icon Visibility"
           width={20}
           height={20}
           className="size-5 object-contain opacity-70 hover:opacity-100 transition-opacity"
