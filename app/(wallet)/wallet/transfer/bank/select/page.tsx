@@ -4,7 +4,11 @@ import { useState, useEffect, useMemo } from "react";
 import { useRouter } from "next/navigation";
 import { StatusBar } from "@/components/wallet/StatusBar";
 import { TransferHeader } from "@/components/wallet/transfer/TransferHeader";
-import { BankSearch, BankList } from "@/components/wallet/transfer/bank";
+import {
+  BankSearch,
+  BankList,
+  BankAccountConfirmationSheet,
+} from "@/components/wallet/transfer/bank";
 import { Bank } from "@/lib/types/bank";
 import { getBanks } from "@/lib/api/bank";
 
@@ -15,6 +19,10 @@ export default function BankSelectPage() {
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
+
+  // Bottom Sheet State for Bank Account Confirmation (Node 1:1797)
+  const [selectedBankForConfirm, setSelectedBankForConfirm] = useState<Bank | null>(null);
+  const [isConfirmOpen, setIsConfirmOpen] = useState<boolean>(false);
 
   useEffect(() => {
     let isMounted = true;
@@ -69,9 +77,16 @@ export default function BankSelectPage() {
   }, [allBanks, searchQuery]);
 
   const handleSelectBank = (bank: Bank) => {
+    setSelectedBankForConfirm(bank);
+    setIsConfirmOpen(true);
+  };
+
+  const handleConfirmContinue = (bank: Bank, accountNumber: string) => {
+    setIsConfirmOpen(false);
     const params = new URLSearchParams({
       bankId: bank.id,
       bank: bank.code,
+      accountNumber: accountNumber,
     });
     router.push(`/wallet/transfer/bank?${params.toString()}`);
   };
@@ -114,6 +129,14 @@ export default function BankSelectPage() {
           />
         </div>
       </div>
+
+      {/* Bank Account Confirmation Bottom Sheet (Node 1:1797) */}
+      <BankAccountConfirmationSheet
+        isOpen={isConfirmOpen}
+        bank={selectedBankForConfirm}
+        onClose={() => setIsConfirmOpen(false)}
+        onContinue={handleConfirmContinue}
+      />
     </main>
   );
 }

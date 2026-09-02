@@ -21,13 +21,21 @@ function TransferBankContent() {
   const searchParams = useSearchParams();
 
   const bankParam = searchParams.get("bank") || searchParams.get("bankId") || "";
-  const initialBank = findBankByIdOrCode(bankParam) || null;
+  const accountParam = searchParams.get("accountNumber") || searchParams.get("account") || "";
+
+  const baseBank = findBankByIdOrCode(bankParam) || null;
+  const initialBank: Bank | null = baseBank
+    ? {
+        ...baseBank,
+        accountNumber: accountParam || baseBank.accountNumber,
+      }
+    : null;
 
   const [selectedBank, setSelectedBank] = useState<Bank | null>(initialBank);
-  const [prevBankParam, setPrevBankParam] = useState(bankParam);
+  const [prevParamsKey, setPrevParamsKey] = useState(`${bankParam}_${accountParam}`);
 
-  if (bankParam !== prevBankParam) {
-    setPrevBankParam(bankParam);
+  if (`${bankParam}_${accountParam}` !== prevParamsKey) {
+    setPrevParamsKey(`${bankParam}_${accountParam}`);
     setSelectedBank(initialBank);
   }
 
@@ -43,7 +51,7 @@ function TransferBankContent() {
   const isFormValid = isBankValid && isAmountValid;
 
   const handleOpenBankPicker = () => {
-    // Navigasi ke bank destination selector / picker (untuk state lanjutan)
+    // Navigasi ke bank destination selector / picker (untuk memilih bank)
     router.push("/wallet/transfer/bank/select");
   };
 
