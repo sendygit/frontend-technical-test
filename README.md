@@ -131,8 +131,14 @@ frontend-technical-test/
 ---
 
 ### Soal 2 — Palindrome Checker (`/palindrome`)
-* **Deskripsi:** Pengecekan kata atau kalimat palindrome dengan normalisasi huruf kecil, penghapusan karakter khusus/spasi, serta riwayat pengecekan.
-* **Status:** Fondasi routing dan types siap. *(Placeholder)*
+* **Deskripsi:** Pengecekan keaslian kata atau kalimat palindrome dengan normalisasi huruf kecil (*case-insensitive*), penghapusan spasi serta karakter simbol/tanda baca (`/[^a-z0-9]/g`), dan dieksekusi dengan algoritma *Two-Pointer* $O(n)$.
+* **Status:** ✅ Selesai Diimplementasikan.
+* **Kriteria & Pengujian:**
+  - Case-insensitive (cth: `"Race Car"` → Palindrome)
+  - Mengabaikan spasi & tanda baca (cth: `"A man, a plan, a canal: Panama"` → Palindrome)
+  - Kalimat bukan palindrome (cth: `"Hello World"` → Bukan Palindrome)
+  - Deteksi kalimat baku (cth: `"Kasur ini rusak"` → Palindrome)
+  - Validasi input kosong atau string tanpa alfanumerik → Menampilkan pesan error yang jelas
 
 ---
 
