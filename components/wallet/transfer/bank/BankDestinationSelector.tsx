@@ -1,5 +1,7 @@
 "use client";
 
+import { useState } from "react";
+import Image from "next/image";
 import { ChevronDown, Building2 } from "lucide-react";
 import { Bank } from "@/lib/types/bank";
 
@@ -14,6 +16,8 @@ export function BankDestinationSelector({
   onClick,
   error,
 }: BankDestinationSelectorProps) {
+  const [logoError, setLogoError] = useState(false);
+
   return (
     <div className="w-full flex flex-col gap-1.5 font-product-sans">
       <button
@@ -30,8 +34,19 @@ export function BankDestinationSelector({
       >
         {selectedBank ? (
           <div className="flex items-center gap-3.5 min-w-0">
-            <div className="flex size-10 shrink-0 items-center justify-center rounded-lg bg-[#F9F5FE] text-[#662AB2] font-bold text-xs">
-              <Building2 className="size-5" />
+            <div className="size-10 shrink-0 rounded-full bg-[#FAFAFA] border border-slate-100 flex items-center justify-center overflow-hidden p-1.5 shadow-xs">
+              {selectedBank.logo && !logoError ? (
+                <Image
+                  src={selectedBank.logo}
+                  alt={selectedBank.name}
+                  width={28}
+                  height={28}
+                  className="h-full w-full object-contain"
+                  onError={() => setLogoError(true)}
+                />
+              ) : (
+                <Building2 className="size-5 text-[#662AB2]" />
+              )}
             </div>
             <div className="min-w-0 flex-1">
               <p className="text-base font-bold text-[#121212] truncate">
