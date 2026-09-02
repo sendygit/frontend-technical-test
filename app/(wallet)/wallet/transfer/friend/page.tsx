@@ -15,6 +15,7 @@ import { formatCurrency } from "@/lib/utils/format";
 import { MOCK_WALLET_DATA } from "@/lib/mocks/wallet";
 import { findContactByPhoneOrName } from "@/lib/mocks/contacts";
 import { Contact } from "@/lib/types/contact";
+import { submitTransferToFriend } from "@/lib/api/transfer";
 
 function TransferFriendContent() {
   const router = useRouter();
@@ -58,7 +59,7 @@ function TransferFriendContent() {
   const [amount, setAmount] = useState<number>(0);
   const [notes, setNotes] = useState("");
   const [error, setError] = useState<string | null>(null);
-  const [isSuccessToast, setIsSuccessToast] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const balance = MOCK_WALLET_DATA.balance;
 
@@ -66,7 +67,7 @@ function TransferFriendContent() {
   const isAmountValid = amount >= 10000 && amount <= balance;
   const isFormValid = isRecipientValid && isAmountValid;
 
-  const handleProceed = () => {
+  const handleProceed = async () => {
     if (!isRecipientValid) {
       setError("Silakan masukkan nomor telepon penerima.");
       return;
@@ -81,8 +82,36 @@ function TransferFriendContent() {
     }
 
     setError(null);
-    setIsSuccessToast(true);
-    setTimeout(() => setIsSuccessToast(false), 3000);
+    setIsSubmitting(true);
+
+    try {
+      const receipt = await submitTransferToFriend({
+        amount,
+        recipient: {
+          id: selectedContact?.id,
+          name: selectedContact?.name || recipientName || "Recipient",
+          phoneNumber: recipientPhone,
+          avatar: selectedContact?.avatar || recipientAvatar,
+        },
+        notes,
+      });
+
+      const params = new URLSearchParams({
+        ref: receipt.referenceNumber,
+        amount: receipt.amount.toString(),
+        name: receipt.recipient.name,
+        phone: receipt.recipient.phoneNumber,
+        avatar: receipt.recipient.avatar || "",
+        date: receipt.date,
+        time: receipt.time,
+        fee: receipt.fee.toString(),
+      });
+
+      router.push(`/wallet/transfer/friend/success?${params.toString()}`);
+    } catch {
+      setError("Terjadi kesalahan saat memproses transfer. Silakan coba lagi.");
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -167,14 +196,9 @@ function TransferFriendContent() {
             <p className="text-xs font-semibold text-red-500 text-center">{error}</p>
           )}
 
-          {isSuccessToast && (
-            <div className="p-3 bg-green-50 border border-green-200 rounded-xl text-center text-xs font-semibold text-green-700 animate-in fade-in">
-              Data transfer valid! Siap menuju konfirmasi.
-            </div>
-          )}
-
           <ProceedTransferButton
             disabled={!isFormValid}
+            isLoading={isSubmitting}
             onClick={handleProceed}
           />
         </div>

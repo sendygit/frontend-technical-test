@@ -1,4 +1,4 @@
-import { TransferTransaction } from "../types/transfer";
+import { TransferTransaction, TransferReceipt, TransferRecipientData } from "../types/transfer";
 import { MOCK_LATEST_TRANSFERS } from "../mocks/transfer";
 
 interface GetLatestTransfersOptions {
@@ -23,4 +23,45 @@ export async function getLatestTransfers(
   }
 
   return [...MOCK_LATEST_TRANSFERS];
+}
+
+export interface SubmitTransferParams {
+  amount: number;
+  recipient: TransferRecipientData;
+  notes?: string;
+}
+
+export async function submitTransferToFriend(
+  params: SubmitTransferParams,
+  delayMs: number = 500
+): Promise<TransferReceipt> {
+  await new Promise((resolve) => setTimeout(resolve, delayMs));
+
+  const now = new Date();
+  const months = [
+    "January", "February", "March", "April", "May", "June",
+    "July", "August", "September", "October", "November", "December"
+  ];
+  const dateStr = `${months[now.getMonth()]} ${now.getDate()}, ${now.getFullYear()}`;
+  const hours = now.getHours().toString().padStart(2, "0");
+  const minutes = now.getMinutes().toString().padStart(2, "0");
+  const timeStr = `${hours}:${minutes}`;
+
+  // Generate reference number e.g. QOIU-0012-ADFE-2234
+  const randomBlock = () => Math.random().toString(36).substring(2, 6).toUpperCase();
+  const refNumber = `QOIU-${randomBlock()}-${randomBlock()}-${randomBlock()}`;
+
+  return {
+    id: `tx_${Date.now()}`,
+    type: "friend",
+    amount: params.amount,
+    recipient: params.recipient,
+    notes: params.notes,
+    date: dateStr,
+    time: timeStr,
+    referenceNumber: refNumber,
+    fee: 0,
+    total: params.amount,
+    status: "success",
+  };
 }
