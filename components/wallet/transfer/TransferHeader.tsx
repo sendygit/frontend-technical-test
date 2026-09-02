@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { ArrowLeft, HelpCircle } from "lucide-react";
+import Image from "next/image";
+import { ArrowLeft } from "lucide-react";
 
 interface TransferHeaderProps {
   title?: string;
@@ -35,7 +36,14 @@ export function TransferHeader({
         className="flex size-10 items-center justify-center rounded-full hover:bg-white/10 active:scale-95 transition-all focus:outline-none focus:ring-2 focus:ring-white/50 cursor-pointer"
         aria-label="Bantuan Transfer"
       >
-        <HelpCircle className="size-6 text-white" />
+        <Image
+          src="/wallet/icons/icon-help.svg"
+          alt=""
+          width={28}
+          height={28}
+          className="size-7 object-contain"
+          aria-hidden="true"
+        />
       </button>
     </header>
   );
