@@ -29,7 +29,7 @@ export function TransactionItem({ transaction }: TransactionItemProps) {
       {/* Left: Icon & Info */}
       <div className="flex items-center gap-3">
         {/* Background lingkaran warna #F9F5FE dengan padding 12px */}
-        <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[#F9F5FE] p-[12px] shadow-sm">
+        <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[#F9F5FE] p-3 shadow-sm">
           <Image
             src={iconSrc}
             alt={transaction.title}

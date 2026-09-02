@@ -12,7 +12,7 @@ export function WalletErrorState({
   onRetry,
 }: WalletErrorStateProps) {
   return (
-    <div className="flex min-h-[500px] flex-col items-center justify-center p-8 text-center bg-[#FFFFFF] rounded-3xl">
+    <div className="flex min-h-125 flex-col items-center justify-center p-8 text-center bg-white rounded-3xl">
       <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-red-50 text-red-600">
         <AlertCircle className="h-8 w-8" />
       </div>

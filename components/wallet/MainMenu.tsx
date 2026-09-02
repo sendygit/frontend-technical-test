@@ -35,7 +35,7 @@ export function MainMenu() {
   ];
 
   return (
-    <div className="mx-6 rounded-2xl bg-[#FFFFFF] p-4 shadow-xl shadow-purple-950/10 border border-slate-100 relative z-20">
+    <div className="mx-6 rounded-2xl bg-white p-4 shadow-xl shadow-purple-950/10 border border-slate-100 relative z-20">
       <div className="grid grid-cols-4 gap-2 text-center">
         {menuItems.map((item) => {
           const content = (
@@ -49,7 +49,7 @@ export function MainMenu() {
                   className="h-9 w-9 object-contain"
                 />
               </div>
-              <span className="text-base  text-[#121212] group-hover:text-[#662AB2] transition-colors">
+              <span className="text-base text-[#121212] group-hover:text-[#662AB2] transition-colors">
                 {item.label}
               </span>
             </div>

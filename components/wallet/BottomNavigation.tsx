@@ -3,7 +3,7 @@ import Image from "next/image";
 
 export function BottomNavigation() {
   return (
-    <div className="sticky bottom-0 left-0 right-0 z-30 w-full border-t border-slate-100 bg-[#FFFFFF] px-4 py-3 shadow-[0px_-8px_20px_0px_rgba(172,172,172,0.10)]">
+    <div className="sticky bottom-0 left-0 right-0 z-30 w-full border-t border-slate-100 bg-white px-4 py-3 shadow-[0px_-8px_20px_0px_rgba(172,172,172,0.10)]">
       <div className="flex items-center justify-between">
         {/* 1. Home (Active) */}
         <button

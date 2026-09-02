@@ -98,11 +98,11 @@ export default function TransferPage() {
       </div>
 
       {/* Main Mobile Frame Container (430px) */}
-      <div className="mx-auto w-full max-w-[430px] rounded-[36px] bg-[#662AB2] shadow-2xl shadow-purple-950/20 border border-purple-900/30 overflow-hidden flex flex-col min-h-[932px] font-product-sans relative">
+      <div className="mx-auto w-full max-w-[430px] rounded-[36px] bg-[#662AB2] shadow-2xl shadow-purple-950/20 border border-purple-900/30 overflow-hidden flex flex-col min-h-233 font-product-sans relative">
         {/* Background Decorative Rings */}
         <div className="pointer-events-none absolute inset-0 overflow-hidden z-0">
-          <div className="size-80 -left-[113px] top-[68px] absolute rounded-full border-[38px] border-[#5C26A1]" />
-          <div className="size-56 left-[300px] top-[69px] absolute rounded-full border-[32px] border-[#5C26A1]" />
+          <div className="size-80 -left-[113px] top-17 absolute rounded-full border-38px border-[#5C26A1]" />
+          <div className="size-56 left-75 top-[69px] absolute rounded-full border-32px border-[#5C26A1]" />
         </div>
 
         {/* Top Purple Banner Area with Status Bar & Header */}
@@ -125,7 +125,7 @@ export default function TransferPage() {
         </div>
 
         {/* Content Body */}
-        <div className="flex-1 flex flex-col justify-between p-6 bg-[#FFFFFF] rounded-t-[32px] shadow-md space-y-6 relative z-10">
+        <div className="flex-1 flex flex-col justify-between p-6 bg-white rounded-t-[32px] shadow-md space-y-6 relative z-10">
           <form onSubmit={handleTransferSubmit} className="space-y-6 flex-1 flex flex-col justify-between">
             <div className="space-y-6">
               {/* 1. Recipient Selection Section */}
@@ -172,7 +172,7 @@ export default function TransferPage() {
                             </div>
                           )}
                         </div>
-                        <span className={`text-xs font-semibold max-w-[56px] truncate ${
+                        <span className={`text-xs font-semibold max-w-14 truncate ${
                           isSelected ? "text-[#662AB2]" : "text-[#121212]"
                         }`}>
                           {friend.name}
@@ -213,7 +213,7 @@ export default function TransferPage() {
                 </div>
 
                 {/* Amount Big Input Box */}
-                <div className={`relative flex items-center rounded-2xl border px-4 py-3.5 transition-all bg-[#FFFFFF] ${
+                <div className={`relative flex items-center rounded-2xl border px-4 py-3.5 transition-all bg-white ${
                   isOverBalance
                     ? "border-red-400 ring-2 ring-red-100"
                     : "border-slate-200 focus-within:border-[#662AB2] focus-within:ring-2 focus-within:ring-purple-100"

@@ -27,7 +27,7 @@ export function FriendItem({ friend }: FriendItemProps) {
           </div>
         )}
       </div>
-      <span className="text-xs font-medium text-[#121212] max-w-[60px] truncate text-center">
+      <span className="text-xs font-medium text-[#121212] max-w-15 truncate text-center">
         {friend.name}
       </span>
     </div>

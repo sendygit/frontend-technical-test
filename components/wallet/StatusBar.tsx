@@ -12,7 +12,7 @@ export function StatusBar() {
         <Signal className="h-3.5 w-3.5" />
         <Wifi className="h-3.5 w-3.5" />
         <div className="flex items-center">
-          <div className="w-5 h-2.5 rounded-[3px] border border-white p-[1px] flex items-center">
+          <div className="w-5 h-2.5 rounded-[3px] border border-white p-px flex items-center">
             <div className="h-full w-full bg-white rounded-[1px]" />
           </div>
           <div className="w-[1.5px] h-1 bg-white rounded-r-[1px] ml-[0.5px]" />

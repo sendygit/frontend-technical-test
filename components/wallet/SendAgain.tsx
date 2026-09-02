@@ -30,12 +30,12 @@ export function SendAgain({ friends }: SendAgainProps) {
         <div className="flex flex-col items-center gap-1.5 shrink-0 cursor-pointer">
           <button
             type="button"
-            className="flex h-14 w-14 items-center justify-center rounded-full border-2 border-dashed border-[#662AB2] bg-[#FFFFFF] text-[#662AB2] focus:outline-none shadow-sm"
+            className="flex h-14 w-14 items-center justify-center rounded-full border-2 border-dashed border-[#662AB2] bg-white text-[#662AB2] focus:outline-none shadow-sm"
             aria-label="Tambah penerima baru"
           >
             <Plus className="h-6 w-6" />
           </button>
-          <span className="text-xs font-medium text-[#662AB2] max-w-[60px] truncate text-center">
+          <span className="text-xs font-medium text-[#662AB2] max-w-15 truncate text-center">
             Add New
           </span>
         </div>
