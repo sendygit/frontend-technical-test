@@ -3,7 +3,7 @@ import { BottomNavigation } from "./BottomNavigation";
 
 export function WalletSkeleton() {
   return (
-    <div className="relative flex min-h-[932px] flex-col justify-between overflow-hidden bg-[#662AB2]">
+    <div className="relative flex min-h-dvh sm:min-h-[932px] flex-col justify-between overflow-hidden bg-[#662AB2]">
       {/* Background Decorative Rings */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden z-0">
         <div className="size-80 -left-[113px] top-[68px] absolute rounded-full border-[38px] border-[#5C26A1]" />

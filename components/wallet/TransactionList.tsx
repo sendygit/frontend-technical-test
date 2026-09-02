@@ -8,9 +8,9 @@ interface TransactionListProps {
 
 export function TransactionList({ transactions }: TransactionListProps) {
   return (
-    <div className="space-y-2">
+    <div className="flex flex-col flex-1 min-h-0 space-y-2 w-full overflow-hidden">
       {/* Section Header */}
-      <div className="flex items-center justify-between pb-1">
+      <div className="flex items-center justify-between pb-1 shrink-0">
         <h2 className="text-base font-bold text-[#121212] tracking-tight">
           Lastest Transaction
         </h2>
@@ -23,18 +23,18 @@ export function TransactionList({ transactions }: TransactionListProps) {
         </button>
       </div>
 
-      {/* Transaction Items */}
-      {transactions.length > 0 ? (
-        <div className="divide-y divide-slate-100">
-          {transactions.map((tx) => (
+      {/* Transaction Items (Only vertical scroll if long, NO horizontal scroll) */}
+      <div className="flex-1 overflow-y-auto overflow-x-hidden min-h-0 divide-y divide-slate-100 overscroll-contain w-full">
+        {transactions.length > 0 ? (
+          transactions.map((tx) => (
             <TransactionItem key={tx.id} transaction={tx} />
-          ))}
-        </div>
-      ) : (
-        <div className="rounded-2xl border border-dashed border-slate-200 p-6 text-center text-xs text-slate-400 italic">
-          Belum ada riwayat transaksi terbaru.
-        </div>
-      )}
+          ))
+        ) : (
+          <div className="rounded-2xl border border-dashed border-slate-200 p-6 text-center text-xs text-slate-400 italic">
+            Belum ada riwayat transaksi terbaru.
+          </div>
+        )}
+      </div>
     </div>
   );
 }

@@ -3,12 +3,15 @@ import Image from "next/image";
 
 export function BottomNavigation() {
   return (
-    <div className="sticky bottom-0 left-0 right-0 z-30 w-full border-t border-slate-100 bg-white px-4 py-3 shadow-[0px_-8px_20px_0px_rgba(172,172,172,0.10)]">
-      <div className="flex items-center justify-between">
+    <nav
+      className="w-full border-t border-slate-100 bg-white px-4 pt-2 pb-[max(0.75rem,env(safe-area-inset-bottom))] shadow-[0px_-4px_20px_0px_rgba(0,0,0,0.05)] select-none shrink-0"
+      aria-label="Navigasi Bawah"
+    >
+      <div className="flex items-center justify-between max-w-[430px] mx-auto">
         {/* 1. Home (Active) */}
         <button
           type="button"
-          className="flex flex-1 flex-col items-center gap-1 text-[#662AB2] focus:outline-none"
+          className="flex flex-1 flex-col items-center gap-1 text-[#662AB2] focus:outline-none cursor-pointer"
           aria-label="Home"
         >
           <div className="flex h-7 w-7 items-center justify-center">
@@ -26,7 +29,7 @@ export function BottomNavigation() {
         {/* 2. Report */}
         <button
           type="button"
-          className="flex flex-1 flex-col items-center gap-1 text-neutral-400 hover:text-slate-600 transition-colors focus:outline-none"
+          className="flex flex-1 flex-col items-center gap-1 text-neutral-400 hover:text-slate-600 transition-colors focus:outline-none cursor-pointer"
           aria-label="Report"
         >
           <div className="flex h-7 w-7 items-center justify-center">
@@ -45,7 +48,7 @@ export function BottomNavigation() {
         <div className="flex flex-1 flex-col items-center">
           <button
             type="button"
-            className="flex h-14 w-14 items-center justify-center rounded-full bg-[#662AB2] text-white shadow-[0px_6px_20px_0px_rgba(102,42,178,0.35)] hover:scale-105 active:scale-95 transition-transform "
+            className="flex h-14 w-14 items-center justify-center rounded-full bg-[#662AB2] text-white shadow-[0px_6px_20px_0px_rgba(102,42,178,0.35)] hover:scale-105 active:scale-95 transition-transform cursor-pointer"
             aria-label="Scan QR Code"
           >
             <Image
@@ -61,7 +64,7 @@ export function BottomNavigation() {
         {/* 4. History */}
         <button
           type="button"
-          className="flex flex-1 flex-col items-center gap-1 text-neutral-400 hover:text-slate-600 transition-colors focus:outline-none"
+          className="flex flex-1 flex-col items-center gap-1 text-neutral-400 hover:text-slate-600 transition-colors focus:outline-none cursor-pointer"
           aria-label="History"
         >
           <div className="flex h-7 w-7 items-center justify-center">
@@ -79,7 +82,7 @@ export function BottomNavigation() {
         {/* 5. Profile */}
         <button
           type="button"
-          className="flex flex-1 flex-col items-center gap-1 text-neutral-400 hover:text-slate-600 transition-colors focus:outline-none"
+          className="flex flex-1 flex-col items-center gap-1 text-neutral-400 hover:text-slate-600 transition-colors focus:outline-none cursor-pointer"
           aria-label="Profile"
         >
           <div className="flex h-7 w-7 items-center justify-center">
@@ -94,6 +97,6 @@ export function BottomNavigation() {
           <span className="text-xs font-medium text-neutral-400">Profile</span>
         </button>
       </div>
-    </div>
+    </nav>
   );
 }

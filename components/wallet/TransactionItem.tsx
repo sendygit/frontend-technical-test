@@ -24,9 +24,9 @@ export function TransactionItem({ transaction }: TransactionItemProps) {
   const iconSrc = getTransactionIconSrc(transaction.category, transaction.type, transaction.title);
 
   return (
-    <div className="flex items-center justify-between py-2.5 group hover:bg-slate-50 -mx-2 px-2 rounded-xl transition-colors">
+    <div className="flex items-center justify-between py-2.5 group hover:bg-slate-50 px-1 rounded-xl transition-colors w-full">
       {/* Left: Icon & Info */}
-      <div className="flex items-center gap-3">
+      <div className="flex items-center gap-3 min-w-0">
         {/* Background lingkaran warna #F9F5FE dengan padding 12px */}
         <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[#F9F5FE] p-3 shadow-sm">
           <Image
@@ -37,18 +37,18 @@ export function TransactionItem({ transaction }: TransactionItemProps) {
             className="h-full w-full object-contain"
           />
         </div>
-        <div className="space-y-0.5">
-          <h4 className="text-sm font-bold text-[#121212] tracking-tight">
+        <div className="space-y-0.5 min-w-0">
+          <h4 className="text-sm font-bold text-[#121212] tracking-tight truncate">
             {transaction.title}
           </h4>
-          <p className="text-xs text-neutral-400 font-medium">
+          <p className="text-xs text-neutral-400 font-medium truncate">
             {transaction.date}
           </p>
         </div>
       </div>
 
       {/* Right: Amount */}
-      <div className="text-right">
+      <div className="text-right shrink-0 ml-2">
         <span
           className={`text-sm font-extrabold tracking-tight ${
             transaction.isPositive

@@ -1,44 +1,43 @@
 import Link from "next/link";
-import { Card, CardHeader, CardTitle, CardDescription, CardFooter } from "@/components/ui/card";
+import { ArrowRight, Calculator, CheckCircle2, Wallet, Gauge, ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Calculator, SpellCheck, Wallet, ArrowRight, ArrowLeftRight, Gauge } from "lucide-react";
+import { Card, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 
-export default function HomePage() {
+export default function Home() {
   const sections = [
     {
       id: "soal-1",
       number: "Soal 1",
-      title: "Recursive Factorial Calculator",
+      title: "Factorial Calculator",
       description:
-        "Kalkulator perhitungan faktorial secara rekursif dengan visualisasi langkah komputasi, validasi input, dan penanganan edge cases.",
+        "Fungsi rekursif & iteratif untuk menghitung faktorial angka secara akurat dengan penanganan batas BigInt dan validasi input negatif.",
       href: "/factorial",
       icon: Calculator,
-      badge: "Algorithm & Recursion",
-      actions: [{ label: "Buka Soal 1", href: "/factorial", variant: "primary" as const }],
+      badge: "Algorithm & Logic",
+      actions: [{ label: "Buka Kalkulator", href: "/factorial", variant: "primary" as const, isExternal: false }],
     },
     {
       id: "soal-2",
       number: "Soal 2",
-      title: "Palindrome Checker",
+      title: "Palindrome Validator",
       description:
-        "Fitur validasi teks palindrome dengan pembersihan karakter non-alfanumerik, riwayat pengecekan, dan indikator visual real-time.",
+        "Algoritma two-pointer untuk memvalidasi teks palindrom dengan normalisasi karakter alfanumerik (case-insensitive & spasi diabaikan).",
       href: "/palindrome",
-      icon: SpellCheck,
-      badge: "String Manipulation",
-      actions: [{ label: "Buka Soal 2", href: "/palindrome", variant: "primary" as const }],
+      icon: CheckCircle2,
+      badge: "String Processing",
+      actions: [{ label: "Buka Validator", href: "/palindrome", variant: "primary" as const, isExternal: false }],
     },
     {
       id: "soal-3",
       number: "Soal 3",
       title: "CashEase E-Wallet",
       description:
-        "Simulasi aplikasi dompet digital modern dengan ringkasan saldo, riwayat transaksi, dan alur transfer dana.",
+        "Aplikasi dompet digital modern (Mobile-First SPA) dengan ringkasan saldo, kontak transfer, dan alur transfer dana.",
       href: "/wallet",
       icon: Wallet,
-      badge: "Full SPA Feature",
+      badge: "Standalone Mobile App",
       actions: [
-        { label: "Dashboard Wallet", href: "/wallet", variant: "primary" as const },
-        { label: "Form Transfer", href: "/wallet/transfer", variant: "outline" as const },
+        { label: "Open CashEase (Tab Baru)", href: "/wallet", variant: "primary" as const, isExternal: true },
       ],
     },
     {
@@ -105,18 +104,29 @@ export default function HomePage() {
 
               <CardFooter className="flex flex-wrap items-center gap-2 border-t border-slate-100 pt-4 dark:border-slate-800/80">
                 {section.actions ? (
-                  section.actions.map((act) => (
-                    <Link key={act.href} href={act.href} className="inline-block">
-                      <Button variant={act.variant} size="sm">
-                        {act.label}
-                        {act.href.includes("transfer") ? (
-                          <ArrowLeftRight className="h-3.5 w-3.5" />
-                        ) : (
-                          <ArrowRight className="h-3.5 w-3.5" />
-                        )}
-                      </Button>
-                    </Link>
-                  ))
+                  section.actions.map((act) =>
+                    act.isExternal ? (
+                      <a
+                        key={act.href}
+                        href={act.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-block"
+                      >
+                        <Button variant={act.variant} size="sm">
+                          {act.label}
+                          <ExternalLink className="h-3.5 w-3.5 ml-1.5" />
+                        </Button>
+                      </a>
+                    ) : (
+                      <Link key={act.href} href={act.href} className="inline-block">
+                        <Button variant={act.variant} size="sm">
+                          {act.label}
+                          <ArrowRight className="h-3.5 w-3.5 ml-1.5" />
+                        </Button>
+                      </Link>
+                    )
+                  )
                 ) : (
                   <span className="text-xs font-medium text-slate-500 italic">
                     {section.externalNote}
