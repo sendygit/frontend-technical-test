@@ -25,7 +25,7 @@ export function SendAgain({ friends }: SendAgainProps) {
       </div>
 
       {/* Horizontal List */}
-      <div className="flex items-center gap-4 overflow-x-auto pb-2 pt-1 -mx-6 px-6 scrollbar-none [scrollbar-width:none] [-ms-overflow-style:none]">
+      <div className="flex items-center gap-4 overflow-x-auto pb-2 pt-1 -mx-6 px-6 scrollbar-none  [-ms-overflow-style:none]">
         {/* Add New Button */}
         <div className="flex flex-col items-center gap-1.5 shrink-0 cursor-pointer">
           <button
