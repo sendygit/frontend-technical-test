@@ -33,8 +33,10 @@ frontend-technical-test/
 │   │   └── page.tsx           # Halaman Soal 2: Palindrome Checker
 │   └── wallet/
 │       ├── page.tsx           # Halaman Soal 3: CashEase E-Wallet Dashboard
-│       └── transfer/
-│           └── page.tsx       # Halaman Soal 3: Form Transfer Dana
+│       ├── transfer/
+│       │   └── page.tsx       # Halaman Soal 3: Form Transfer Dana
+│       └── pulsa-data/
+│           └── page.tsx       # Halaman Soal 3: Pembelian Pulsa & Paket Data
 ├── components/
 │   └── ui/                    # Reusable UI primitives (Button, Input, Card)
 │       ├── button.tsx
@@ -62,13 +64,14 @@ frontend-technical-test/
 
 ## Struktur Route
 
-| Route URL          | Nama Modul                     | Deskripsi                                      |
-| :----------------- | :----------------------------- | :--------------------------------------------- |
-| `/`                | **Dashboard / Hub**            | Halaman utama navigasi ke seluruh modul soal   |
-| `/factorial`       | **Soal 1 — Factorial**         | Recursive Factorial Calculator                 |
-| `/palindrome`      | **Soal 2 — Palindrome**        | Palindrome Checker                             |
-| `/wallet`          | **Soal 3 — CashEase Home**     | Ringkasan saldo, menu cepat, & riwayat mutasi  |
-| `/wallet/transfer` | **Soal 3 — CashEase Transfer** | Formulir transfer dana ke sesama/rekening lain |
+| Route URL            | Nama Modul                     | Deskripsi                                                 |
+| :------------------- | :----------------------------- | :-------------------------------------------------------- |
+| `/`                  | **Dashboard / Hub**            | Halaman utama navigasi ke seluruh modul soal              |
+| `/factorial`         | **Soal 1 — Factorial**         | Recursive Factorial Calculator                            |
+| `/palindrome`        | **Soal 2 — Palindrome**        | Palindrome Checker                                        |
+| `/wallet`            | **Soal 3 — CashEase Home**     | Ringkasan saldo, menu cepat, & riwayat mutasi             |
+| `/wallet/transfer`   | **Soal 3 — CashEase Transfer** | Formulir transfer dana ke sesama/rekening lain            |
+| `/wallet/pulsa-data` | **Soal 3 — Pulsa & Data**      | Pembelian pulsa & paket data dengan auto-deteksi provider |
 
 ---
 
@@ -148,11 +151,12 @@ frontend-technical-test/
 
 ---
 
-### Soal 3 — CashEase E-Wallet (`/wallet` & `/wallet/transfer`)
+### Soal 3 — CashEase E-Wallet (`/wallet`, `/wallet/transfer`, & `/wallet/pulsa-data`)
 
 - **Deskripsi:** Fitur aplikasi dompet digital interaktif:
-  - **Halaman Utama (`/wallet`):** ✅ Selesai Diimplementasikan (Figma Node `1:243`). Memuat status bar, header logo & points badge, saldo dengan toggle visibility, main action menu (Transfer, Top Up, Withdraw, More), section _Send Again_ dengan scrolling horizontal dan tombol _Add New_, daftar _Latest Transaction_ dengan formatting nominal positif (hijau) & negatif (merah), simulated REST API delay 1200ms, loading skeleton UI, error state dengan tombol retry, serta penanganan empty state.
-  - **Halaman Transfer (`/wallet/transfer`):** ✅ Selesai Diimplementasikan (Figma Node `1:244`). Memuat pemilihan kontak penerima tersimpan dengan status verifikasi, input nominal Rupiah dinamis, validasi saldo (`amount <= balance`), quick preset nominal (50k, 100k, 250k, 500k, 1jt), input catatan opsional, tombol submit dengan simulated REST API delay 1000ms, serta modal receipt konfirmasi transfer sukses lengkap dengan nomor transaksi dan biaya admin Rp 0.
+  - **Halaman Utama (`/wallet`):** Memuat status bar, header logo & points badge, saldo dengan toggle visibility, main action menu (Transfer, Top Up, Withdraw, More), section _Send Again_ dengan scrolling horizontal dan tombol _Add New_, daftar _Latest Transaction_ dengan formatting nominal positif (hijau) & negatif (merah), simulated REST API delay 1200ms, loading skeleton UI, error state dengan tombol retry, serta penanganan empty state.
+  - **Halaman Transfer (`/wallet/transfer`):** Memuat pemilihan kontak penerima tersimpan dengan status verifikasi, input nominal Rupiah dinamis, validasi saldo (`amount <= balance`), quick preset nominal (50k, 100k, 250k, 500k, 1jt), input catatan opsional, tombol submit dengan simulated REST API delay 1000ms, serta modal receipt konfirmasi transfer sukses lengkap dengan nomor transaksi dan biaya admin Rp 0.
+  - **Halaman Pulsa & Paket Data (`/wallet/pulsa-data`):** Memuat form input nomor ponsel interaktif dengan integrasi buku kontak tersimpan, deteksi otomatis operator telekomunikasi berbasis prefix 4 digit (Telkomsel, Indosat Ooredoo, XL Axiata, Tri, Smartfren), toggle tab kategori _Pulsa_ vs _Paket Data_, daftar denom pilihan produk dengan rincian kuota dan harga, simulated REST API delay saat fetching katalog produk, serta penanganan _empty state_ saat nomor belum diisi dan _loading state_ saat mengganti operator/tab.
 
 ---
 
