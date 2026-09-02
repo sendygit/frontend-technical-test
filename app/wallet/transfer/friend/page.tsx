@@ -1,12 +1,56 @@
+"use client";
+
+import { useState } from "react";
 import Link from "next/link";
-import { ArrowLeft, UserPlus } from "lucide-react";
+import Image from "next/image";
+import { ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { StatusBar } from "@/components/wallet/StatusBar";
+import { TransferHeader } from "@/components/wallet/transfer/TransferHeader";
+import {
+  RecipientInput,
+  SetAmount,
+  NotesInput,
+  ProceedTransferButton,
+} from "@/components/wallet/transfer/friends";
+import { formatCurrency } from "@/lib/utils/format";
+import { MOCK_WALLET_DATA } from "@/lib/mocks/wallet";
 
-export default function TransferFriendPlaceholderPage() {
+export default function TransferFriendPage() {
+  const [recipientPhone, setRecipientPhone] = useState("");
+  const [amount, setAmount] = useState<number>(0);
+  const [notes, setNotes] = useState("");
+  const [error, setError] = useState<string | null>(null);
+  const [isSuccessToast, setIsSuccessToast] = useState(false);
+
+  const balance = MOCK_WALLET_DATA.balance;
+
+  const isRecipientValid = recipientPhone.trim().length >= 4;
+  const isAmountValid = amount >= 10000 && amount <= balance;
+  const isFormValid = isRecipientValid && isAmountValid;
+
+  const handleProceed = () => {
+    if (!isRecipientValid) {
+      setError("Silakan masukkan nomor telepon penerima.");
+      return;
+    }
+    if (amount < 10000) {
+      setError("Nominal transfer minimum adalah Rp 10.000.");
+      return;
+    }
+    if (amount > balance) {
+      setError("Saldo dompet digital Anda tidak mencukupi.");
+      return;
+    }
+
+    setError(null);
+    setIsSuccessToast(true);
+    setTimeout(() => setIsSuccessToast(false), 3000);
+  };
+
   return (
     <div className="space-y-6 pb-12">
-      {/* Top Bar Navigation */}
+      {/* Top Bar Navigation for Evaluator */}
       <div className="flex items-center gap-4">
         <Link href="/wallet/transfer">
           <Button variant="outline" size="sm">
@@ -14,10 +58,12 @@ export default function TransferFriendPlaceholderPage() {
             Kembali ke Transfer Hub
           </Button>
         </Link>
-        <span className="text-sm font-medium text-slate-500">Transfer to Friends</span>
+        <span className="text-sm font-medium text-slate-500">
+          Soal 3 &bull; Transfer to Friends
+        </span>
       </div>
 
-      {/* Mobile Container */}
+      {/* Main Mobile Frame Container (430px x 932px) */}
       <div className="mx-auto w-full max-w-[430px] rounded-[36px] bg-[#662AB2] shadow-2xl shadow-purple-950/20 border border-purple-900/30 overflow-hidden flex flex-col min-h-[932px] font-product-sans relative">
         {/* Background Decorative Rings */}
         <div className="pointer-events-none absolute inset-0 overflow-hidden z-0">
@@ -25,34 +71,87 @@ export default function TransferFriendPlaceholderPage() {
           <div className="size-56 left-[300px] top-[69px] absolute rounded-full border-[32px] border-[#5C26A1]" />
         </div>
 
-        <div className="relative z-10 flex flex-col flex-1 justify-between">
-          <div>
-            <StatusBar />
-            <div className="flex items-center px-6 py-4 text-white">
-              <Link
-                href="/wallet/transfer"
-                className="flex h-10 w-10 items-center justify-center rounded-full hover:bg-white/10 active:scale-95 transition-all"
-                aria-label="Kembali"
-              >
-                <ArrowLeft className="h-6 w-6" />
-              </Link>
-              <h1 className="text-xl font-bold ml-4">Transfer to Friends</h1>
+        {/* Top Purple Section with StatusBar, Header, and Balance */}
+        <div className="text-white relative z-10 pb-4">
+          <StatusBar />
+          <TransferHeader title="Transfer to Friends" backHref="/wallet/transfer" />
+
+          {/* Balance Section */}
+          <div className="px-6 pt-2 pb-3 flex items-center justify-between">
+            <div className="space-y-0.5">
+              <span className="text-xs text-purple-200 font-medium">Your Balance</span>
+              <p className="text-2xl font-bold tracking-tight text-white">
+                {formatCurrency(balance)}
+              </p>
+            </div>
+            <button
+              type="button"
+              className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white text-[#662AB2] font-semibold text-xs shadow-sm hover:bg-purple-50 transition-colors focus:outline-none cursor-pointer"
+              aria-label="Top Up Saldo"
+            >
+              <Image
+                src="/wallet/icons/icon-wallet.svg"
+                alt=""
+                width={18}
+                height={18}
+                className="size-4.5 object-contain"
+                aria-hidden="true"
+              />
+              <span>Top Up</span>
+            </button>
+          </div>
+        </div>
+
+        {/* White Content Container (starts below purple balance area, rounded-t-[40px]) */}
+        <div className="flex-1 bg-white rounded-t-[40px] px-5 pt-5 pb-7 shadow-md flex flex-col justify-between space-y-6 relative z-10">
+          <div className="space-y-5">
+            {/* Drag Handle (96px x 6px) */}
+            <div className="w-24 h-1.5 bg-neutral-200 rounded-full mx-auto" />
+
+            {/* Form Fields */}
+            <div className="space-y-4">
+              {/* 1. Recipient Input */}
+              <RecipientInput
+                value={recipientPhone}
+                onChange={(val) => {
+                  setRecipientPhone(val);
+                  if (error) setError(null);
+                }}
+                error={!isRecipientValid && recipientPhone ? "Nomor telepon minimal 4 digit." : null}
+              />
+
+              {/* 2. Set Amount */}
+              <SetAmount
+                amount={amount}
+                onChange={(val) => {
+                  setAmount(val);
+                  if (error) setError(null);
+                }}
+                maxBalance={balance}
+                error={amount > 0 && amount < 10000 ? "Nominal minimum Rp 10.000" : null}
+              />
+
+              {/* 3. Notes */}
+              <NotesInput value={notes} onChange={setNotes} />
             </div>
           </div>
 
-          <div className="flex-1 bg-white rounded-t-[40px] p-8 flex flex-col items-center justify-center text-center space-y-4">
-            <div className="flex size-20 items-center justify-center rounded-full bg-[#F9F5FE] text-[#662AB2]">
-              <UserPlus className="size-10" />
-            </div>
-            <h2 className="text-xl font-bold text-[#121212]">Transfer to Friends Flow</h2>
-            <p className="text-sm text-slate-500 max-w-70">
-              Screen detail form Transfer to Friends akan dikerjakan pada task berikutnya sesuai panduan.
-            </p>
-            <Link href="/wallet/transfer">
-              <Button className="bg-[#662AB2] hover:bg-[#5C26A1] text-white cursor-pointer">
-                Kembali ke Menu Transfer
-              </Button>
-            </Link>
+          {/* Bottom Action Area */}
+          <div className="space-y-3 pt-2">
+            {error && (
+              <p className="text-xs font-semibold text-red-500 text-center">{error}</p>
+            )}
+
+            {isSuccessToast && (
+              <div className="p-3 bg-green-50 border border-green-200 rounded-xl text-center text-xs font-semibold text-green-700 animate-in fade-in">
+                Data transfer valid! Siap menuju konfirmasi.
+              </div>
+            )}
+
+            <ProceedTransferButton
+              disabled={!isFormValid}
+              onClick={handleProceed}
+            />
           </div>
         </div>
       </div>

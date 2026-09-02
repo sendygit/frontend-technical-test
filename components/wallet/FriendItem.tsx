@@ -1,4 +1,5 @@
-import React from "react";
+import { useState } from "react";
+import Link from "next/link";
 import Image from "next/image";
 import { WalletFriend } from "@/lib/types/wallet";
 
@@ -7,11 +8,15 @@ interface FriendItemProps {
 }
 
 export function FriendItem({ friend }: FriendItemProps) {
-  const [imageError, setImageError] = React.useState(false);
+  const [imageError, setImageError] = useState(false);
 
   return (
-    <div className="flex flex-col items-center gap-1.5 shrink-0 cursor-pointer">
-      <div className="relative flex h-14 w-14 items-center justify-center rounded-full overflow-hidden">
+    <Link
+      href="/wallet/transfer/friend"
+      className="flex flex-col items-center gap-1.5 shrink-0 cursor-pointer focus:outline-none"
+      aria-label={`Transfer ke ${friend.name}`}
+    >
+      <div className="relative flex size-14 items-center justify-center rounded-full overflow-hidden hover:scale-105 active:scale-95 transition-transform">
         {friend.avatar && !imageError ? (
           <Image
             src={friend.avatar}
@@ -30,6 +35,6 @@ export function FriendItem({ friend }: FriendItemProps) {
       <span className="text-xs font-medium text-[#121212] max-w-15 truncate text-center">
         {friend.name}
       </span>
-    </div>
+    </Link>
   );
 }
