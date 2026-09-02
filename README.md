@@ -6,7 +6,7 @@ Seluruh modul soal disatukan dalam satu repository terstruktur dengan penekanan 
 
 ---
 
-## 🚀 Tech Stack
+## Tech Stack
 
 | Teknologi                 | Versi            | Peran / Deskripsi                                                      |
 | :------------------------ | :--------------- | :--------------------------------------------------------------------- |
