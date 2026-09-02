@@ -2,8 +2,10 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import { Building2 } from "lucide-react";
 import { formatCurrency } from "@/lib/utils/format";
 import { TransferReceipt } from "@/lib/types/transfer";
+import { formatMaskedAccountNumber } from "../bank/BankAccountNumber";
 
 interface TransferSuccessCardProps {
   receipt: TransferReceipt;
@@ -11,11 +13,16 @@ interface TransferSuccessCardProps {
 
 export function TransferSuccessCard({ receipt }: TransferSuccessCardProps) {
   const [avatarError, setAvatarError] = useState(false);
+  const isBank = receipt.type === "bank";
+
+  const displaySubtitle = isBank
+    ? formatMaskedAccountNumber(receipt.recipient.phoneNumber)
+    : receipt.recipient.phoneNumber;
 
   return (
     <div className="relative w-full max-w-[390px] mx-auto pt-10">
       {/* Outer White Badge with Success Checkmark (matching Figma: p-1 bg-white rounded-full) */}
-      <div className="p-1 left-1/2 -translate-x-1/2 top-0 absolute bg-white rounded-full inline-flex justify-center items-center z-20 ">
+      <div className="p-1 left-1/2 -translate-x-1/2 top-0 absolute bg-white rounded-full inline-flex justify-center items-center z-20">
         <div className="size-16 relative rounded-full overflow-hidden flex items-center justify-center">
           <Image
             src="/wallet/icons/icon-success.svg"
@@ -49,16 +56,26 @@ export function TransferSuccessCard({ receipt }: TransferSuccessCardProps) {
         <div className="w-full flex flex-col justify-start items-center gap-3">
           <div className="text-black text-lg font-bold">Send to</div>
           <div className="inline-flex justify-start items-center gap-4">
-            <div className="size-12 rounded-full overflow-hidden bg-[#F9F5FE] shrink-0">
+            <div
+              className={`size-12 rounded-full overflow-hidden shrink-0 flex items-center justify-center ${
+                isBank
+                  ? "bg-[#FAFAFA] border border-slate-100 p-1.5"
+                  : "bg-[#F9F5FE]"
+              }`}
+            >
               {receipt.recipient.avatar && !avatarError ? (
                 <Image
                   src={receipt.recipient.avatar}
                   alt={receipt.recipient.name}
                   width={48}
                   height={48}
-                  className="size-12 rounded-full object-cover"
+                  className={`h-full w-full ${
+                    isBank ? "object-contain" : "object-cover rounded-full"
+                  }`}
                   onError={() => setAvatarError(true)}
                 />
+              ) : isBank ? (
+                <Building2 className="size-6 text-[#662AB2]" />
               ) : (
                 <div className="flex size-12 items-center justify-center rounded-full bg-[#662AB2] text-white font-bold text-base">
                   {receipt.recipient.name.charAt(0)}
@@ -69,8 +86,8 @@ export function TransferSuccessCard({ receipt }: TransferSuccessCardProps) {
               <div className="text-[#121212] text-base font-normal">
                 {receipt.recipient.name}
               </div>
-              <div className="text-neutral-400 text-sm font-medium">
-                {receipt.recipient.phoneNumber}
+              <div className="text-neutral-400 text-sm font-medium tracking-wide">
+                {displaySubtitle}
               </div>
             </div>
           </div>

@@ -46,7 +46,6 @@ function TransferBankContent() {
   const [notes, setNotes] = useState<string>(initialNotesParam);
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
-  const [isSuccessToast, setIsSuccessToast] = useState(false);
 
   const balance = MOCK_WALLET_DATA.balance;
 
@@ -77,18 +76,28 @@ function TransferBankContent() {
       setIsSubmitting(true);
       setError(null);
 
-      await submitBankTransfer({
+      const receipt = await submitBankTransfer({
         bank: selectedBank,
         accountNumber: selectedBank.accountNumber || "12345678980901",
         amount,
         notes,
       });
 
-      setIsSuccessToast(true);
-      setTimeout(() => {
-        setIsSuccessToast(false);
-        setIsSubmitting(false);
-      }, 3000);
+      const params = new URLSearchParams({
+        ref: receipt.referenceNumber,
+        amount: receipt.amount.toString(),
+        bankId: selectedBank.id,
+        bank: selectedBank.code,
+        name: receipt.recipient.name,
+        accountNumber: receipt.recipient.phoneNumber,
+        avatar: receipt.recipient.avatar || "",
+        date: receipt.date,
+        time: receipt.time,
+        fee: receipt.fee.toString(),
+        total: receipt.total.toString(),
+      });
+
+      router.push(`/wallet/transfer/bank/success?${params.toString()}`);
     } catch (err) {
       const msg = err instanceof Error ? err.message : "Gagal memproses transfer bank.";
       setError(msg);
@@ -143,7 +152,7 @@ function TransferBankContent() {
 
           {/* Form Fields */}
           <div className="space-y-4">
-            {/* 1. Destination Bank / Recipient (Node 1:1479 initial, Node 1:2269 filled) */}
+            {/* 1. Destination Bank / Recipient */}
             <BankDestinationSelector
               selectedBank={selectedBank}
               onClick={handleOpenBankPicker}
@@ -170,12 +179,6 @@ function TransferBankContent() {
         <div className="space-y-3 pt-2">
           {error && (
             <p className="text-xs font-semibold text-red-500 text-center">{error}</p>
-          )}
-
-          {isSuccessToast && (
-            <div className="p-3 bg-green-50 border border-green-200 rounded-xl text-center text-xs font-semibold text-green-700 animate-in fade-in">
-              Transfer ke bank berhasil diproses!
-            </div>
           )}
 
           <BankProceedButton

@@ -72,6 +72,7 @@ export interface SubmitBankTransferParams {
   accountNumber: string;
   amount: number;
   notes?: string;
+  fee?: number;
 }
 
 export async function submitBankTransfer(
@@ -90,8 +91,9 @@ export async function submitBankTransfer(
   const minutes = now.getMinutes().toString().padStart(2, "0");
   const timeStr = `${hours}:${minutes}`;
 
+  const fee = params.fee !== undefined ? params.fee : 2500;
   const randomBlock = () => Math.random().toString(36).substring(2, 6).toUpperCase();
-  const refNumber = `QOIU-${randomBlock()}-${randomBlock()}-${randomBlock()}`;
+  const refNumber = `ALKS-${randomBlock()}-${randomBlock()}-${randomBlock()}`;
 
   return {
     id: `tx_${Date.now()}`,
@@ -107,8 +109,8 @@ export async function submitBankTransfer(
     date: dateStr,
     time: timeStr,
     referenceNumber: refNumber,
-    fee: 0,
-    total: params.amount,
+    fee: fee,
+    total: params.amount + fee,
     status: "success",
   };
 }
