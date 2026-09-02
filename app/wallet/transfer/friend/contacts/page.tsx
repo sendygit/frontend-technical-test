@@ -75,6 +75,7 @@ export default function ContactsPickerPage() {
     const params = new URLSearchParams({
       phone: contact.phoneNumber,
       name: contact.name,
+      avatar: contact.avatar,
     });
     router.push(`/wallet/transfer/friend?${params.toString()}`);
   };

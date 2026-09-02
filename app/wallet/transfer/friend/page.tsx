@@ -16,20 +16,47 @@ import {
 } from "@/components/wallet/transfer/friends";
 import { formatCurrency } from "@/lib/utils/format";
 import { MOCK_WALLET_DATA } from "@/lib/mocks/wallet";
+import { findContactByPhoneOrName } from "@/lib/mocks/contacts";
+import { Contact } from "@/lib/types/contact";
 
 function TransferFriendContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
 
   const phoneParam = searchParams.get("phone") || "";
-  const [prevPhoneParam, setPrevPhoneParam] = useState(phoneParam);
-  const [recipientPhone, setRecipientPhone] = useState(phoneParam);
+  const nameParam = searchParams.get("name") || "";
+  const avatarParam = searchParams.get("avatar") || "";
 
-  // Sync state when searchParams changes (idiomatic React 19 pattern)
-  if (phoneParam !== prevPhoneParam) {
-    setPrevPhoneParam(phoneParam);
-    setRecipientPhone(phoneParam);
+  // Auto-resolve matched contact from mock data if avatar or name wasn't explicitly passed
+  const matchedContact = findContactByPhoneOrName(phoneParam || nameParam);
+
+  const initialPhone = phoneParam || matchedContact?.phoneNumber || "";
+  const initialName = nameParam || matchedContact?.name || "";
+  const initialAvatar = avatarParam || matchedContact?.avatar || "";
+
+  const [recipientPhone, setRecipientPhone] = useState(initialPhone);
+  const [recipientName, setRecipientName] = useState(initialName);
+  const [recipientAvatar, setRecipientAvatar] = useState(initialAvatar);
+
+  const [prevParamsKey, setPrevParamsKey] = useState(`${phoneParam}_${nameParam}_${avatarParam}`);
+
+  // Sync state dynamically when searchParams changes
+  if (`${phoneParam}_${nameParam}_${avatarParam}` !== prevParamsKey) {
+    setPrevParamsKey(`${phoneParam}_${nameParam}_${avatarParam}`);
+    setRecipientPhone(initialPhone);
+    setRecipientName(initialName);
+    setRecipientAvatar(initialAvatar);
   }
+
+  const selectedContact: Contact | null =
+    recipientName || recipientPhone
+      ? {
+          id: matchedContact?.id || "selected_contact",
+          name: recipientName || "Recipient",
+          phoneNumber: recipientPhone,
+          avatar: recipientAvatar,
+        }
+      : null;
 
   const [amount, setAmount] = useState<number>(0);
   const [notes, setNotes] = useState("");
@@ -123,14 +150,16 @@ function TransferFriendContent() {
 
             {/* Form Fields */}
             <div className="space-y-4">
-              {/* 1. Recipient Input with Phonebook Navigation */}
+              {/* 1. Recipient Section (Supports Unselected & Selected with Edit button) */}
               <RecipientInput
                 value={recipientPhone}
+                selectedContact={selectedContact}
                 onChange={(val) => {
                   setRecipientPhone(val);
                   if (error) setError(null);
                 }}
                 onOpenContacts={() => router.push("/wallet/transfer/friend/contacts")}
+                onEditContact={() => router.push("/wallet/transfer/friend/contacts")}
                 error={!isRecipientValid && recipientPhone ? "Nomor telepon minimal 4 digit." : null}
               />
 

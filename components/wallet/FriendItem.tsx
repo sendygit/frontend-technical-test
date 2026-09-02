@@ -10,9 +10,15 @@ interface FriendItemProps {
 export function FriendItem({ friend }: FriendItemProps) {
   const [imageError, setImageError] = useState(false);
 
+  const queryParams = new URLSearchParams({
+    name: friend.name,
+    phone: friend.accountNumber || "+62 12345678910",
+    avatar: friend.avatar || "",
+  });
+
   return (
     <Link
-      href="/wallet/transfer/friend"
+      href={`/wallet/transfer/friend?${queryParams.toString()}`}
       className="flex flex-col items-center gap-1.5 shrink-0 cursor-pointer focus:outline-none"
       aria-label={`Transfer ke ${friend.name}`}
     >
