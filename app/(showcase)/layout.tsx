@@ -7,7 +7,7 @@ export default function ShowcaseLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <div className="min-h-full flex flex-col bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-100">
+    <div className="min-h-screen flex flex-col flex-1 bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-100">
       <header className="sticky top-0 z-40 w-full border-b border-slate-200 bg-white/80 backdrop-blur-md dark:border-slate-800 dark:bg-slate-900/80">
         <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6">
           <Link
@@ -50,7 +50,7 @@ export default function ShowcaseLayout({
         <div className="mx-auto max-w-6xl">{children}</div>
       </main>
 
-      <footer className="border-t border-slate-200 py-6 text-center text-xs text-slate-500 dark:border-slate-800 dark:text-slate-400">
+      <footer className="mt-auto border-t border-slate-200 py-6 text-center text-xs text-slate-500 dark:border-slate-800 dark:text-slate-400">
         <div className="mx-auto max-w-6xl px-4">
           Frontend Technical Assessment Foundation &bull; Next.js App Router &bull; TypeScript &bull; Tailwind CSS
         </div>
